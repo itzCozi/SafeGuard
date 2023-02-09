@@ -38,7 +38,7 @@ checkDirectorys = True
 knownThreats = open("C:/Users/coope/Python-SafeGuard/resources/threatList.sg", "r")
 data = knownThreats.read()
 data_into_list = data.split("\n")
-print(data_into_list)
+print("Lanching SafeGuard...")
 knownThreats.close()
 
 
