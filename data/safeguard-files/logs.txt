@@ -1,0 +1,23 @@
+Log File
+-------------------
+
+!THREATS-LOADED! !THREATS-LOADED! SafeGuard PHASE-1 initalized - AT:2023-02-09 16:56:36
+
+!THREATS-LOADED! !THREATS-LOADED! [C:\Users\coope\OneDrive\Desktop\Test] Directory !DETECTED! - AT:2023-02-09 16:58:34
+
+[C:\Users\coope\OneDrive\Desktop\Test] Directory !DELETED! - AT:2023-02-09 16:58:34
+
+!THREATS-LOADED! 2023-02-09 16:59:39
+
+!THREATS-LOADED! 2023-02-09 16:59:46
+
+SafeGuard PHASE-1 initalized - AT:2023-02-09 16:59:46
+
+!THREATS-LOADED! 2023-02-09 17:13:29
+
+!THREATS-LOADED! 2023-02-09 17:13:35
+
+System restored - AT: 2023-02-09 17:13:35
+
+SafeGuard PHASE-1 initalized - AT:2023-02-09 17:13:35
+
