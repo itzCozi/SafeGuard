@@ -2,7 +2,7 @@
 # https://replit.com/@cozi08/NewProgram#SafeGuard.cpp
 """
 TODO: Test checkDirectory function
-TODO: Finish logs and add color
+FIX: Logs only partially printing to file
 TODO: Review and refine code
 TODO: Add lots of clears
 TODO: Add direcory detected and undetected text logs instead of debuglogs
@@ -287,7 +287,6 @@ def PHASE_3():
 
 if is_admin():
   clear()
-  shortsleep
   PHASE_1()
 else:
   # Re-run the program with admin rights
