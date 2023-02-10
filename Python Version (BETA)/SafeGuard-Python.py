@@ -294,11 +294,18 @@ def PHASE_3():
     print(Fore.BLUE + "SafeGuard !THREAT-ACTION-FINISHED! - AT:" + now + Style.RESET_ALL)
 
   # Start stinger
-  URLinstall(
+  StingerYorN = input("Do you want to run stinger it will help keep your device protected in the future? (y/n) \n")
+  
+  if StingerYorN == 'y':
+    URLinstall(
     "https://downloadcenter.trellix.com/products/mcafee-avert/Stinger/stinger64.exe",
-    "resources", "Stinger")
-  os.startfile(
+    "Downloads", "Stinger")
+    os.startfile(
     "C:/Users/coope/Python-SafeGuard/resources/tron/resources/Stinger.exe")
+  
+  else:
+    print(Fore.RED + "Stinger skipped" + Style.RESET_ALL)
+
 
 # Check if the program running as admin
 if is_admin():
