@@ -1,5 +1,4 @@
 # Make a program to check the known directorys for folders which usally hold viruses (Windows/Temp, roaming/Peer2Profit, All other malawarebytes detections) PYTHON PORT FROM C++
-# https://replit.com/@cozi08/NewProgram#SafeGuard.cpp
 """
 TODO: Review and refine code
 TODO: ADD FUNCTION TO CHECK FOR MISSING FILES AND DOWNLOAD THEM FROM WEBSITE
@@ -286,6 +285,8 @@ def PHASE_3():
 
   print("\n\n Activating Tron Please wait... \n")
   print("Click 'Yes' when asked to run as admin \n")
+  
+  time.sleep(5)
 
   startTron()
 
