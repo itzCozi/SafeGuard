@@ -1,6 +1,7 @@
 # Make a program to check the known directorys for folders which usally hold viruses (Windows/Temp, roaming/Peer2Profit, All other malawarebytes detections) PYTHON PORT FROM C++
 """
 TODO: Review and refine code
+TODO: Test pre-Run function
 TODO: ADD FUNCTION TO CHECK FOR MISSING FILES AND DOWNLOAD THEM FROM WEBSITE
 TODO: Add direcory detected and undetected text logs instead of debuglogs
 TODO: test all phases and make sure they work
@@ -16,11 +17,20 @@ import time
 import datetime
 import shutil
 import ctypes
+from PreChecks.py import preRun
 from colorama import Fore, Style
 
 # Global Variables
-logFile = ""
-knownThreatFile = "C:/Users/coope/Python-SafeGuard/resources/threatList.sg"
+class Files():
+  appUserFile = pythonFile = "C:/Users/" + os.getlogin() + "/Python-SafeGuard/SafeGuard.app.ink",
+  pythondiscreteFile = "C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python-Discrete .py",
+  tronAdmin =  "C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tronAdmin.ink",
+  tronPath = pythonFile = "C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tron",
+  appFile = pythonFile = "C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard.cmd",
+  pythonFile = "C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python .py",
+  logFile = "C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/logs.txt",
+  knownThreatFile = "C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/threatList .sg",
+
 sleep = time.sleep(3)
 now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n\n"
 
@@ -35,7 +45,7 @@ checkDirectorys = True
 knownThreats = open(knownThreatFile, "r")
 data = knownThreats.read()
 data_into_list = data.split("\n")
-with open("C:/Users/coope/Python-SafeGuard/resources/logs.txt", "a") as f:
+with open(logFile, "a") as f:
   if os.path.getsize(knownThreatFile) == 0:
     f.write("!THREAT-LIST-EMPTY! No directorys scanned. - AT: " + now)
     print("!THREAT-LIST-EMPTY! No directorys scanned.")
@@ -60,6 +70,8 @@ def URLinstall(URL, Destination, NewName, FileExt=""):
   # Download and write to file
   file_content = requests.get(URL)
   open(Destination + '/' + NewName + FileExt, "wb").write(file_content.content)
+  with open(logFile, "a") as f:
+    f.write("Downloaded file to: " + Destination + " - AT: " + now)
   if debug:
     print(Fore.GREEN + "Downloaded file to: " + Destination + Style.RESET_ALL)
 
@@ -68,6 +80,8 @@ def CUSTOMinstall(URL, Destination, NewName, FileExt=""):
   # Download and write to file
   file_content = requests.get(URL)
   open(Destination + '/' + NewName + FileExt, "wb").write(file_content.content)
+  with open(logFile, "a") as f:
+    f.write("Downloaded file to: " + Destination + " - AT: " + now)
   if debug:
     print(Fore.GREEN + "Downloaded file to: " + Destination + Style.RESET_ALL)
 
@@ -87,13 +101,13 @@ def checkWindowsUpdate(sickbay):
     os.system("Install-WindowsUpdate")
 
     # Log
-    with open("C:/Users/coope/Python-SafeGuard/resources/logs.txt", "a") as f:
+    with open(logFile, "a") as f:
       f.write("Windows10 updated - AT: " + now)
       if debug:
         print(Fore.GREEN + "Windows updated AT: " + now + Style.RESET_ALL)
 
   if updateConfirmation == 'n':
-    with open("C:/Users/coope/Python-SafeGuard/resources/logs.txt", "a") as f:
+    with open(logFile, "a") as f:
       f.write("Update skipped - AT: " + now)
     if debug:
       print(Fore.RED + "Update skipped" + now + Style.RESET_ALL)
@@ -109,14 +123,14 @@ def systemRestore(systemRestore, sickbay):
     os.system("sfc /scannow")
 
     # Log
-    with open("C:/Users/coope/Python-SafeGuard/resources/logs.txt", "a") as f:
+    with open(logFile, "a") as f:
       f.write("System restored - AT: " + now)
       if debug:
         print(Fore.GREEN + "System restored - AT: " + now + Style.RESET_ALL)
 
   else:
     # Log
-    with open("C:/Users/coope/Python-SafeGuard/resources/logs.txt", "a") as f:
+    with open(logFile, "a") as f:
       f.write("System restore !SKIPPED! - AT:" + now)
       if debug:
         print(Fore.RED + "System restore !SKIPPED! - AT:" + now +
@@ -132,13 +146,13 @@ def diskCleanup(diskCleanup, sickbay):
       os.system("c:\windows\SYSTEM32\cleanmgr.exe /cDrive")
 
       # Log
-      with open("C:/Users/coope/Python-SafeGuard/resources/logs.txt", "a") as f:
+      with open(logFile, "a") as f:
         f.write("Disk cleanup - AT:" + now)
         if debug:
           print(Fore.BLUE + "Disk cleanup - AT:" + now + Style.RESET_ALL)
 
     else:
-      with open("C:/Users/coope/Python-SafeGuard/resources/logs.txt", "a") as f:
+      with open(logFile, "a") as f:
         f.write("Disk cleanup !SKIPPED! - AT:" + now)
         if debug:
           print(Fore.RED + "Disk cleanup !SKIPPED! - AT:" + now +
@@ -156,7 +170,7 @@ def startTron():
   os.startfile("D:/vscode/Workspace/Python-SafeGuard/resources/tronAdmin")
 
   # Log
-  with open("C:/Users/coope/Python-SafeGuard/resources/logs.txt", "a") as f:
+  with open(logFile, "a") as f:
     f.write("Tron.bat activated - AT:" + now)
     if debug:
       print(Fore.RED + "Tron.bat activated - AT" + now + Style.RESET_ALL)
@@ -170,7 +184,7 @@ def checkDirectorys():
       print(Fore.RED + "Directory detected" + Style.RESET_ALL)
 
       # Log directory detected
-      with open("C:/Users/coope/Python-SafeGuard/resources/logs.txt", "a") as f:
+      with open(logFile, "a") as f:
         f.write("[" + iteam + "] Directory !DETECTED! - AT:" + now)
       if debug:
         print(Fore.RED + "[" + iteam + "] Directory !DETECTED! - AT:" + now +
@@ -180,7 +194,7 @@ def checkDirectorys():
       shutil.rmtree(iteam)
 
       # Log directory deleted
-      with open("C:/Users/coope/Python-SafeGuard/resources/logs.txt", "a") as f:
+      with open(logFile, "a") as f:
         f.write("[" + iteam + "] Directory !DELETED! - AT:" + now)
       if debug:
         print(Fore.RED + "[" + iteam + "] Directory !DELETED! - AT:" + now +
@@ -198,7 +212,7 @@ def PHASE_1():
   print(Fore.GREEN + "PHASE-1")
 
   # Log
-  with open("C:/Users/coope/Python-SafeGuard/resources/logs.txt", "a") as f:
+  with open(logFile, "a") as f:
     f.write("SafeGuard PHASE-1 initalized - AT:" + now)
     if debug:
       print(Fore.BLUE + "SafeGuard PHASE-1 initalized - AT:" + now +
@@ -229,7 +243,7 @@ def PHASE_2():
   print(Fore.YELLOW + "PHASE-2")
 
   # Log
-  with open("C:/Users/coope/Python-SafeGuard/resources/logs.txt", "a") as f:
+  with open(logFile, "a") as f:
     f.write("SafeGuard PHASE-2 initalized - AT:" + now)
     if debug:
       print(Fore.BLUE + "SafeGuard PHASE-2 initalized - AT:" + now + Style.RESET_ALL)
@@ -260,7 +274,7 @@ def PHASE_2():
     print(Fore.RED + "SafteyScan skipped" + Style.RESET_ALL)
 
     # Log
-    with open("C:/Users/coope/Python-SafeGuard/resources/logs.txt", "a") as f:
+    with open(logFile, "a") as f:
       f.write("!SCAN-SKIPPED! - AT:" + now)
     if debug:
       print(Fore.RED + "!SCAN-SKIPPED! - AT:" + now + Style.RESET_ALL)
@@ -276,7 +290,7 @@ def PHASE_3():
   print(Fore.RED + "PHASE-3")
 
   # Log
-  with open("C:/Users/coope/Python-SafeGuard/resources/logs.txt", "a") as f:
+  with open(logFile, "a") as f:
     f.write("SafeGuard PHASE-3 initalized - AT:" + now)
   if debug:
     print(Fore.BLUE + "SafeGuard PHASE-3 initalized - AT:" + now + Style.RESET_ALL)
@@ -291,7 +305,7 @@ def PHASE_3():
   startTron()
 
   # Log finished
-  with open("C:/Users/coope/Python-SafeGuard/resources/logs.txt", "a") as f:
+  with open(logFile, "a") as f:
     f.write("SafeGuard !THREAT-ACTION-FINISHED! - AT:" + now)
   if debug:
     print(Fore.BLUE + "SafeGuard !THREAT-ACTION-FINISHED! - AT:" + now + Style.RESET_ALL)
