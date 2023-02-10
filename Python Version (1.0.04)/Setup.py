@@ -1,3 +1,5 @@
+# https://www.jetbrains.com/help/pycharm/creating-and-running-setup-py.html
+
 # How to chcek if path exists in python
 """
 import os
