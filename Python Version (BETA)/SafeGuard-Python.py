@@ -2,7 +2,6 @@
 # https://replit.com/@cozi08/NewProgram#SafeGuard.cpp
 """
 TODO: Review and refine code
-TODO: ADD FUNCTION TO CHECK FOR MISSING FILES AND DOWNLOAD THEM FROM WEBSITE
 TODO: Add direcory detected and undetected text logs instead of debuglogs
 TODO: test all phases and make sure they work
 TODO: Look at https://learn.microsoft.com/en-us/microsoft-365/security/intelligence/safety-scanner-download?view=o365-worldwide and maybe run it in phase_4
