@@ -282,6 +282,8 @@ def PHASE_3():
   if debug:
     print(Fore.BLUE + "SafeGuard PHASE-3 initalized - AT:" + now + Style.RESET_ALL)
 
+  time.sleep(30)
+
   print("\n\n Activating Tron Please wait... \n")
   print("Click 'Yes' when asked to run as admin \n")
 
