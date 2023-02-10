@@ -55,7 +55,7 @@ def is_admin():
     return False
 
 
-def URLinstall(URL, Destination, NewName):
+def URLinstall(URL, Destination, NewName, FileExt=""):
   FileExt = URL[-4:]
 
   # Download and write to file
@@ -64,6 +64,13 @@ def URLinstall(URL, Destination, NewName):
   if debug:
     print(Fore.GREEN + "Downloaded file to: " + Destination + Style.RESET_ALL)
 
+def CUSTOMinstall(URL, Destination, NewName, FileExt=""):
+
+  # Download and write to file
+  file_content = requests.get(URL)
+  open(Destination + '/' + NewName + FileExt, "wb").write(file_content.content)
+  if debug:
+    print(Fore.GREEN + "Downloaded file to: " + Destination + Style.RESET_ALL)
 
 def clear():
   clr = os.system('cls' if os.name in ('nt', 'dos') else 'clear')
@@ -141,6 +148,11 @@ def diskCleanup(diskCleanup, sickbay):
     print(Fore.RED + "Failed to run disk cleanup" + Style.RESET_ALL)
 
 
+def installRUNSafetyScanner():
+  CUSTOMinstall("https://go.microsoft.com/fwlink/?LinkId=212732", "C:/Users/coope/Downloads", "SafetyScanner", ".exe")
+  os.startfile("C:/Users/coope/Downloads/SafetyScanner.exe")
+
+
 def startTron():
   os.startfile("D:/vscode/Workspace/Python-SafeGuard/resources/tronAdmin")
 
@@ -193,10 +205,12 @@ def PHASE_1():
       print(Fore.BLUE + "SafeGuard PHASE-1 initalized - AT:" + now +
             Style.RESET_ALL)
 
-      systemRestore(systemRestore == True, sickbay == False)
-      sleep
       # If checkDirectorys() returns true then run PHASE_2
       if checkDirectorys():
+        print(Fore.RED+Style.BRIGHT+"!RUNNING-EMMERGENCY-PROCEDURE!"+Style.RESET_ALL)
+        systemRestore(systemRestore == True, sickbay == False)
+        clear()
+        
         print("!THREAT-DETECTED! Start Phase-2?")
         PHASE_2YorN = input(
           "Your system scanned a malacious folder, do you want to take action? (y/n) \n")
@@ -235,21 +249,21 @@ def PHASE_2():
     print("Prep skipped... QUITTING")
     quit()
 
-  TronYorN = input("Do you want to remove threats? (y/n) \n")
+  SafteyscanYorN = input("Do you want to remove threats? (y/n) \n")
 
-  if TronYorN == 'y':
-    print("\n\n Activating Tron Please wait... \n")
-    startTron()
+  if SafteyscanYorN == 'y':
+    print("\n\n Activating SafteyScan Please wait... \n")
+    installRUNSafetyScanner()
     PHASE_3()
 
-  if TronYorN == 'n':
-    print(Fore.RED + "Tron skipped" + Style.RESET_ALL)
+  if SafteyscanYorN == 'n':
+    print(Fore.RED + "SafteyScan skipped" + Style.RESET_ALL)
 
     # Log
     with open("C:/Users/coope/Python-SafeGuard/resources/logs.txt", "a") as f:
-      f.write("!TRON-SKIPPED! - AT:" + now)
+      f.write("!SCAN-SKIPPED! - AT:" + now)
     if debug:
-      print(Fore.RED + "!TRON-SKIPPED! - AT:" + now + Style.RESET_ALL)
+      print(Fore.RED + "!SCAN-SKIPPED! - AT:" + now + Style.RESET_ALL)
 
   else:
     print(Fore.RED + "Invaild Input!" + Style.RESET_ALL)
