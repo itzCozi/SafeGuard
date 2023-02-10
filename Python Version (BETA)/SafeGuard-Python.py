@@ -254,6 +254,7 @@ def PHASE_2():
   if SafteyscanYorN == 'y':
     print("\n\n Activating SafteyScan Please wait... \n")
     installRUNSafetyScanner()
+    input("Press enter to continue... \n")
     PHASE_3()
 
   if SafteyscanYorN == 'n':
