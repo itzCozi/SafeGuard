@@ -6,7 +6,6 @@ import time
 import datetime
 import shutil
 import ctypes
-from PreChecks.py import preRun
 from colorama import Fore, Style
 
 
