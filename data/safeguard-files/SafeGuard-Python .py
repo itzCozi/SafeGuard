@@ -1,7 +1,7 @@
 # Make a program to check the known directorys for folders which usally hold viruses (Windows/Temp, roaming/Peer2Profit, All other malawarebytes detections) PYTHON PORT FROM C++
-# https://replit.com/@cozi08/NewProgram#SafeGuard.cpp
 """
 TODO: Review and refine code
+TODO: ADD FUNCTION TO CHECK FOR MISSING FILES AND DOWNLOAD THEM FROM WEBSITE
 TODO: Add direcory detected and undetected text logs instead of debuglogs
 TODO: test all phases and make sure they work
 TODO: Look at https://learn.microsoft.com/en-us/microsoft-365/security/intelligence/safety-scanner-download?view=o365-worldwide and maybe run it in phase_4
@@ -54,7 +54,7 @@ def is_admin():
     return False
 
 
-def URLinstall(URL, Destination, NewName):
+def URLinstall(URL, Destination, NewName, FileExt=""):
   FileExt = URL[-4:]
 
   # Download and write to file
@@ -63,6 +63,13 @@ def URLinstall(URL, Destination, NewName):
   if debug:
     print(Fore.GREEN + "Downloaded file to: " + Destination + Style.RESET_ALL)
 
+def CUSTOMinstall(URL, Destination, NewName, FileExt=""):
+
+  # Download and write to file
+  file_content = requests.get(URL)
+  open(Destination + '/' + NewName + FileExt, "wb").write(file_content.content)
+  if debug:
+    print(Fore.GREEN + "Downloaded file to: " + Destination + Style.RESET_ALL)
 
 def clear():
   clr = os.system('cls' if os.name in ('nt', 'dos') else 'clear')
@@ -140,6 +147,11 @@ def diskCleanup(diskCleanup, sickbay):
     print(Fore.RED + "Failed to run disk cleanup" + Style.RESET_ALL)
 
 
+def installRUNSafetyScanner():
+  CUSTOMinstall("https://go.microsoft.com/fwlink/?LinkId=212732", "C:/Users/coope/Downloads", "SafetyScanner", ".exe")
+  os.startfile("C:/Users/coope/Downloads/SafetyScanner.exe")
+
+
 def startTron():
   os.startfile("D:/vscode/Workspace/Python-SafeGuard/resources/tronAdmin")
 
@@ -192,11 +204,13 @@ def PHASE_1():
       print(Fore.BLUE + "SafeGuard PHASE-1 initalized - AT:" + now +
             Style.RESET_ALL)
 
-      systemRestore(systemRestore == True, sickbay == False)
-      sleep
       # If checkDirectorys() returns true then run PHASE_2
       if checkDirectorys():
-        print("!THREAT-DETECTED! Start Phase-2? (y/n)")
+        print(Fore.RED+Style.BRIGHT+"!RUNNING-EMMERGENCY-PROCEDURE!"+Style.RESET_ALL)
+        systemRestore(systemRestore == True, sickbay == False)
+        clear()
+        
+        print("!THREAT-DETECTED! Start Phase-2?")
         PHASE_2YorN = input(
           "Your system scanned a malacious folder, do you want to take action? (y/n) \n")
 
@@ -234,21 +248,22 @@ def PHASE_2():
     print("Prep skipped... QUITTING")
     quit()
 
-  TronYorN = input("Do you want to remove threats? (y/n) \n")
+  SafteyscanYorN = input("Do you want to remove threats? (y/n) \n")
 
-  if TronYorN == 'y':
-    print("\n\n Activating Tron Please wait... \n")
-    startTron()
+  if SafteyscanYorN == 'y':
+    print("\n\n Activating SafteyScan Please wait... \n")
+    installRUNSafetyScanner()
+    input("Press enter to continue... \n")
     PHASE_3()
 
-  if TronYorN == 'n':
-    print(Fore.RED + "Tron skipped" + Style.RESET_ALL)
+  if SafteyscanYorN == 'n':
+    print(Fore.RED + "SafteyScan skipped" + Style.RESET_ALL)
 
     # Log
     with open("C:/Users/coope/Python-SafeGuard/resources/logs.txt", "a") as f:
-      f.write("!TRON-SKIPPED! - AT:" + now)
+      f.write("!SCAN-SKIPPED! - AT:" + now)
     if debug:
-      print(Fore.RED + "!TRON-SKIPPED! - AT:" + now + Style.RESET_ALL)
+      print(Fore.RED + "!SCAN-SKIPPED! - AT:" + now + Style.RESET_ALL)
 
   else:
     print(Fore.RED + "Invaild Input!" + Style.RESET_ALL)
@@ -266,8 +281,12 @@ def PHASE_3():
   if debug:
     print(Fore.BLUE + "SafeGuard PHASE-3 initalized - AT:" + now + Style.RESET_ALL)
 
+  time.sleep(30)
+
   print("\n\n Activating Tron Please wait... \n")
   print("Click 'Yes' when asked to run as admin \n")
+  
+  time.sleep(5)
 
   startTron()
 
@@ -278,11 +297,18 @@ def PHASE_3():
     print(Fore.BLUE + "SafeGuard !THREAT-ACTION-FINISHED! - AT:" + now + Style.RESET_ALL)
 
   # Start stinger
-  URLinstall(
+  StingerYorN = input("Do you want to run stinger it will help keep your device protected in the future? (y/n) \n")
+  
+  if StingerYorN == 'y':
+    URLinstall(
     "https://downloadcenter.trellix.com/products/mcafee-avert/Stinger/stinger64.exe",
-    "resources", "Stinger")
-  os.startfile(
+    "Downloads", "Stinger")
+    os.startfile(
     "C:/Users/coope/Python-SafeGuard/resources/tron/resources/Stinger.exe")
+  
+  else:
+    print(Fore.RED + "Stinger skipped" + Style.RESET_ALL)
+
 
 # Check if the program running as admin
 if is_admin():
