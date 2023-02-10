@@ -197,7 +197,7 @@ def PHASE_1():
       sleep
       # If checkDirectorys() returns true then run PHASE_2
       if checkDirectorys():
-        print("!THREAT-DETECTED! Start Phase-2? (y/n)")
+        print("!THREAT-DETECTED! Start Phase-2?")
         PHASE_2YorN = input(
           "Your system scanned a malacious folder, do you want to take action? (y/n) \n")
 
