@@ -1,3 +1,15 @@
+# Imports
+import os
+import requests
+import sys
+import time
+import datetime
+import shutil
+import ctypes
+from PreChecks.py import preRun
+from colorama import Fore, Style
+
+
 class Files():
   appUserFile = pythonFile = "C:/Users/" + os.getlogin() + "/Python-SafeGuard/SafeGuard.app.ink",
   pythondiscreteFile = "C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python-Discrete .py",
