@@ -1,4 +1,4 @@
-// Make a program to check the known directorys for folders which usally hold viruses (Windows/Temp, roaming/Peer2Profit, All other malawarebytes detections)
+// This code is old and was kind of a template sadly i still have to finish it.
 
 // Imports
 #include <stdlib.h>
