@@ -92,7 +92,6 @@ def URLinstall(URL, Destination, NewName, FileExt=""):
 
 
 def CUSTOMinstall(URL, Destination, NewName, FileExt=""):
-
   # Download and write to file
   file_content = requests.get(URL)
   open(Destination + '/' + NewName + FileExt, "wb").write(file_content.content)
