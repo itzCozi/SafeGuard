@@ -1,9 +1,12 @@
 # Imports
-import os
-import requests
-import time
-import datetime
-from colorama import Fore, Style
+try:
+  import os
+  import requests
+  import time
+  import datetime
+  from colorama import Fore, Style
+except:
+  print("Error: Missing required modules. Please install the following modules: os, requests, time, datetime, colorama")
 
 
 class Files():

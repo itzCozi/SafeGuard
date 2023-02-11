@@ -10,15 +10,18 @@ TODO: When done finish C++ version
 """
 
 # Imports
-import os
-import requests
-import sys
-import time
-import datetime
-import shutil
-import ctypes
-from PreChecks import preRun
-from colorama import Fore, Style
+try:
+  import os
+  import requests
+  import sys
+  import time
+  import datetime
+  import shutil
+  import ctypes
+  from PreChecks import preRun
+  from colorama import Fore, Style
+except:
+  print("Error: Missing required modules. Please install the following modules: os, requests, time, datetime, colorama, shutil, ctypes")
 
 # Global Variables
 class Files():
