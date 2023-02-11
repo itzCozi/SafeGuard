@@ -10,7 +10,7 @@ completely automated. The script will run at startup (if turned on [run on start
 if the system has been dormant this is to minimize user interaction. Although if a threat is detected  
 the system will delete it and run multipule scans and checks (with user consent).
 
-[Usage and Installation Guide](https://github.com/itzCozi/SafeGuard/wiki/User-Manual)
+[Usage and Installation Guide](https://github.com/itzCozi/SafeGuard/wiki/User-Manual)  
 [Latest Release](https://github.com/itzCozi/SafeGuard/releases/tag/1.0.2)
 
 
