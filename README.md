@@ -1,5 +1,5 @@
 # SafeGuard
-The SafeGuard program scans for files and directorys which are threats and deletes them, this script is 
+The SafeGuard program scans for files and directorys which are threats and deletes them, this script is  
 made to be ran at start up and random times to check security and PC vulnerability. [Safeguard.com](https://itzcozi.github.io/SafeGuard/)
 
 ![SafeGuard](.ignore/BluBanner.jpg)
@@ -29,3 +29,11 @@ Under the hood, Safeguard is actully very complicated the main file contains 300
 alone along with a complex hirearcy and file system there is also a c++ version of the app which is faster and 
 does not require internet access to run also its much more convenient. The c++ version is still in 
 development and is not yet ready for release although the source code is available for reading and editing [SafeGuard C++ Source-Code](https://github.com/itzCozi/SafeGuard/tree/main/C%2B%2B%20Version%20(UNFINISHED)).
+
+
+Contact Me
+---------------------------------
+discord: BadDevoleper#4200                                                                                                                                             
+Email: Cooperransom08@outlook.com                                                                                                                                      
+[Replit](https://replit.com/@cozi08) | 
+[Twitter](https://twitter.com/ransom_cooper)
