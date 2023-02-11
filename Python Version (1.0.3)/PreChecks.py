@@ -33,6 +33,7 @@ class Files():
   
   knownThreatFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/threatList.sg");
   knownThreatFileFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources");
+ 
   
 sleep = time.sleep(3)
 now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n\n"
