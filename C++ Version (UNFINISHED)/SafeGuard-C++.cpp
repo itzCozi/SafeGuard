@@ -34,6 +34,8 @@ void setColorRed(){
 
 
 // Functions
+
+// BROKEBN FUNCTION
 int readFolderList() {
 std::list<std::string> threatList;
 std::string line;
