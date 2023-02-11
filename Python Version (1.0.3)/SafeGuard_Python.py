@@ -264,8 +264,7 @@ def PHASE_2():
     "Your system scanned a malacious folder, don't worry we have removed it for you\n"
     "althogh the program that made the folder may still be on your system.\n"
     "Do you want to prep your system for disinfection? \n")
-  prepYorN = input(
-    "Do you want to run disk cleanup and windows update? (y/n) \n")
+  prepYorN = input("Do you want to run disk cleanup and windows update? (y/n) \n")
 
   if prepYorN == 'y':
     diskCleanup(diskCleanup == True, sickbay == False)
