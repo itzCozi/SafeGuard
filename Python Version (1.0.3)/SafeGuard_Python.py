@@ -23,6 +23,15 @@ try:
 except:
   print("Error: Missing required modules. Please install the following modules: os, requests, time, datetime, colorama, shutil, ctypes")
 
+# Pre run message
+def PreRunAdminCheck():
+  if ctypes.windll.shell32.IsUserAnAdmin():
+    print()
+  else:
+    print("SafeGuard Version-1.0.4 Anti-virus protection \nThis window will close momentarily...")
+
+PreRunAdminCheck()
+
 # Global Variables
 class Files():
   appUserFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/SafeGuard.app.ink")
