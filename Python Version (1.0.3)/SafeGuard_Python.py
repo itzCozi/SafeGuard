@@ -1,12 +1,9 @@
 # Make a program to check the known directorys for folders which usally hold viruses (Windows/Temp, roaming/Peer2Profit, All other malawarebytes detections) PYTHON PORT FROM C++
 """
 TODO: Review and refine code
-TODO: Test pre-Run function
-TODO: ADD FUNCTION TO CHECK FOR MISSING FILES AND DOWNLOAD THEM FROM WEBSITE
-TODO: Add direcory detected and undetected text logs instead of debuglogs
-TODO: test all phases and make sure they work
-TODO: Look at https://learn.microsoft.com/en-us/microsoft-365/security/intelligence/safety-scanner-download?view=o365-worldwide and maybe run it in phase_4
-TODO: When done finish C++ version
+TODO: Check all log statements and make sure they are correct and colorful
+TODO: Over engineer the shit outta this
+TODO: Find a solution to the C++ problem
 """
 
 # Imports
