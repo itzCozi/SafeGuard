@@ -10,26 +10,30 @@ TODO: When done finish C++ version
 """
 
 # Imports
-import os
-import requests
-import sys
-import time
-import datetime
-import shutil
-import ctypes
-from PreChecks import preRun
-from colorama import Fore, Style
+try:
+  import os
+  import requests
+  import sys
+  import time
+  import datetime
+  import shutil
+  import ctypes
+  from PreChecks import preRun
+  from colorama import Fore, Style
+except:
+  print("Error: Missing required modules. Please install the following modules: os, requests, time, datetime, colorama, shutil, ctypes")
 
 # Global Variables
 class Files():
-  appUserFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/SafeGuard.app.ink");
-  pythondiscreteFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python-Discrete.py");
-  tronAdmin =  str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tronAdmin.ink");
-  tronPath = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tron");
-  appFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard.cmd");
-  pythonFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python.py");
-  logFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/logs.txt");
-  knownThreatFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/threatList.sg");
+  appUserFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/SafeGuard.app.ink")
+  pythondiscreteFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python-Discrete.py")
+  tronAdmin = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tronAdmin.ink")
+  tronPath = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tron")
+  appFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard.cmd")
+  pythonFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python.py")
+  logFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/logs.txt")
+  knownThreatFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/threatList.sg")
+
 
 sleep = time.sleep(3)
 now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n\n"
@@ -77,6 +81,7 @@ def URLinstall(URL, Destination, NewName, FileExt=""):
   if debug:
     print(Fore.GREEN + "Downloaded file to: " + Destination + Style.RESET_ALL)
 
+
 def CUSTOMinstall(URL, Destination, NewName, FileExt=""):
 
   # Download and write to file
@@ -86,6 +91,7 @@ def CUSTOMinstall(URL, Destination, NewName, FileExt=""):
     f.write("Downloaded file to: " + Destination + " - AT: " + now)
   if debug:
     print(Fore.GREEN + "Downloaded file to: " + Destination + Style.RESET_ALL)
+
 
 def clear():
   clr = os.system('cls' if os.name in ('nt', 'dos') else 'clear')
@@ -135,8 +141,7 @@ def systemRestore(systemRestore, sickbay):
     with open(Files.logFile, "a") as f:
       f.write("System restore !SKIPPED! - AT:" + now)
       if debug:
-        print(Fore.RED + "System restore !SKIPPED! - AT:" + now +
-              Style.RESET_ALL)
+        print(Fore.RED + "System restore !SKIPPED! - AT:" + now + Style.RESET_ALL)
 
 
 def diskCleanup(diskCleanup, sickbay):
@@ -157,14 +162,14 @@ def diskCleanup(diskCleanup, sickbay):
       with open(Files.logFile, "a") as f:
         f.write("Disk cleanup !SKIPPED! - AT:" + now)
         if debug:
-          print(Fore.RED + "Disk cleanup !SKIPPED! - AT:" + now +
-                Style.RESET_ALL)
+          print(Fore.RED + "Disk cleanup !SKIPPED! - AT:" + now + Style.RESET_ALL)
   else:
     print(Fore.RED + "Failed to run disk cleanup" + Style.RESET_ALL)
 
 
 def installRUNSafetyScanner():
-  CUSTOMinstall("https://go.microsoft.com/fwlink/?LinkId=212732", "C:/Users/coope/Downloads", "SafetyScanner", ".exe")
+  CUSTOMinstall("https://go.microsoft.com/fwlink/?LinkId=212732",
+                "C:/Users/coope/Downloads", "SafetyScanner", ".exe")
   os.startfile("C:/Users/coope/Downloads/SafetyScanner.exe")
 
 
@@ -189,8 +194,7 @@ def checkDirectorys():
       with open(Files.logFile, "a") as f:
         f.write("[" + iteam + "] Directory !DETECTED! - AT:" + now)
       if debug:
-        print(Fore.RED + "[" + iteam + "] Directory !DETECTED! - AT:" + now +
-              Style.RESET_ALL)
+        print(Fore.RED + "[" + iteam + "] Directory !DETECTED! - AT:" + now + Style.RESET_ALL)
 
       # Delete detected directory
       shutil.rmtree(iteam)
@@ -199,8 +203,7 @@ def checkDirectorys():
       with open(Files.logFile, "a") as f:
         f.write("[" + iteam + "] Directory !DELETED! - AT:" + now)
       if debug:
-        print(Fore.RED + "[" + iteam + "] Directory !DELETED! - AT:" + now +
-              Style.RESET_ALL)
+        print(Fore.RED + "[" + iteam + "] Directory !DELETED! - AT:" + now + Style.RESET_ALL)
 
       return True
 
@@ -217,15 +220,15 @@ def PHASE_1():
   with open(Files.logFile, "a") as f:
     f.write("SafeGuard PHASE-1 initalized - AT:" + now)
     if debug:
-      print(Fore.BLUE + "SafeGuard PHASE-1 initalized - AT:" + now +
-            Style.RESET_ALL)
+      print(Fore.BLUE + "SafeGuard PHASE-1 initalized - AT:" + now + Style.RESET_ALL)
 
       # If checkDirectorys() returns true then run PHASE_2
       if checkDirectorys():
-        print(Fore.RED+Style.BRIGHT+"!RUNNING-EMMERGENCY-PROCEDURE!"+Style.RESET_ALL)
+        print(Fore.RED + Style.BRIGHT + "!RUNNING-EMMERGENCY-PROCEDURE!" +
+              Style.RESET_ALL)
         systemRestore(systemRestore == True, sickbay == False)
         clear()
-        
+
         print("!THREAT-DETECTED! Start Phase-2?")
         PHASE_2YorN = input(
           "Your system scanned a malacious folder, do you want to take action? (y/n) \n")
@@ -301,7 +304,7 @@ def PHASE_3():
 
   print("\n\n Activating Tron Please wait... \n")
   print("Click 'Yes' when asked to run as admin \n")
-  
+
   time.sleep(5)
 
   startTron()
@@ -313,15 +316,16 @@ def PHASE_3():
     print(Fore.BLUE + "SafeGuard !THREAT-ACTION-FINISHED! - AT:" + now + Style.RESET_ALL)
 
   # Start stinger
-  StingerYorN = input("Do you want to run stinger it will help keep your device protected in the future? (y/n) \n")
-  
+  StingerYorN = input(
+    "Do you want to run stinger it will help keep your device protected in the future? (y/n) \n")
+
   if StingerYorN == 'y':
     URLinstall(
-    "https://downloadcenter.trellix.com/products/mcafee-avert/Stinger/stinger64.exe",
-    "Downloads", "Stinger")
+      "https://downloadcenter.trellix.com/products/mcafee-avert/Stinger/stinger64.exe",
+      "Downloads", "Stinger")
     os.startfile(
-    "C:/Users/coope/Python-SafeGuard/resources/tron/resources/Stinger.exe")
-  
+      "C:/Users/coope/Python-SafeGuard/resources/tron/resources/Stinger.exe")
+
   else:
     print(Fore.RED + "Stinger skipped" + Style.RESET_ALL)
 
