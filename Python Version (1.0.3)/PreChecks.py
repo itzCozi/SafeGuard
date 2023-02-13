@@ -94,3 +94,9 @@ def preRun():
     if debug:
       print(Fore.GREEN + "All files accounted for." + Style.RESET_ALL)
       clear()
+
+
+def autoUpdate():
+  # Compares the hash of both SafeGuard and the recent release if they are not the 
+  # same then replace code with the new release
+  print()
