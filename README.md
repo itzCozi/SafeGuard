@@ -15,8 +15,8 @@ the system will delete it and run multipule scans and checks (with user consent)
 
 
 ## Development
-SafeGuard is still under active development for both the c++ and python versions of the app  
-We are looking foreward to soon realeasing the c++ version but I am only a solo dev so please have patience.
+SafeGuard is still under active development for both the C++ and python versions of the app  
+We are looking foreward to soon realeasing the C++ version but I am only a solo dev so please have patience.
 
 
 ### Contribution 
@@ -27,8 +27,8 @@ Contact information and other links are at the bottom of this document.
 
 ### Under The Hood
 Under the hood, Safeguard is actully very complicated the main file contains 300+ lines of code (Python version)  
-alone along with a complex hirearcy and file system there is also a c++ version of the app which is faster and 
-does not require internet access to run also its much more convenient. The c++ version is still in 
+alone along with a complex hirearcy and file system there is also a C++ version of the app which is faster and 
+does not require internet access to run also its much more convenient. The C++ version is still in 
 development and is not yet ready for release although the source code is available for reading and editing [SafeGuard C++ Source-Code](https://github.com/itzCozi/SafeGuard/tree/main/C%2B%2B%20Version%20(UNFINISHED)).
 
 
