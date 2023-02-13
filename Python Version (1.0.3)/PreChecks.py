@@ -68,9 +68,8 @@ def hashFileLOCAL(file):
 def hashFileURL(url):
   newFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/newFile")
   
-  fileRequest = requests.get(url, allow_redirects=True)
-  with open(newFile, 'wb')as f:
-    f.write(fileRequest.content)
+  with open (newFile, "w") as f:
+    f.write(requests.get('https://itzcozi.github.io/SafeGuard/data/safeguard-files/SafeGuard-Python.py').text)
     f.close()
 
   BUF_SIZE = os.path.getsize(newFile)
@@ -84,7 +83,10 @@ def hashFileURL(url):
         break
 
       sha256.update(data)
-
+  
+  f.close()
+  os.remove(newFile)
+  
   return sha256.hexdigest()
 
 
@@ -147,7 +149,7 @@ def autoUpdate():
     print("Web file hash: " + webFile)
     print("Local file hash: " + localFile)
   
-  if localFile != webFile:
+  if webFile != localFile:
     # Logs
     with open (Files.logFile, "a") as f:
       f.write("SafeGuard-Python.py !OUTDATED! - AT: " + now)
