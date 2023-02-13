@@ -1,6 +1,7 @@
 # Make a program to check the known directorys for folders which usally hold viruses (Windows/Temp, roaming/Peer2Profit, All other malawarebytes detections) PYTHON PORT FROM C++
 """
 TODO: Review and refine code
+TODO: ADD AUTO-UPDATE TO PRECHECKS
 TODO: Check all log statements and make sure they are correct and colorful
 TODO: Over engineer the shit outta this
 TODO: Find a solution to the C++ problem
