@@ -17,6 +17,7 @@ try:
   import shutil
   import ctypes
   from PreChecks import preRun
+  from PreChecks import autoUpdate
   from colorama import Fore, Style
 except:
   print("Error: Missing required modules. Please install the following modules: os, requests, time, datetime, colorama, shutil, ctypes")
@@ -53,6 +54,7 @@ diskCleanup = True
 checkDirectorys = True
 
 preRun()
+autoUpdate()
 
 # Load threats into 'knownThreats' list
 knownThreats = open(Files.knownThreatFile)
@@ -343,3 +345,4 @@ if is_admin():
 else:
   # Re-run the program with admin rights
   ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+
