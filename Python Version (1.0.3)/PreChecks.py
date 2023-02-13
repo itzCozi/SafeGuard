@@ -2,6 +2,7 @@
 try:
   import os
   import requests
+  import hashlib
   import time
   import datetime
   from colorama import Fore, Style
@@ -45,6 +46,46 @@ debug = True
 def clear():
   clr = os.system('cls' if os.name in ('nt', 'dos') else 'clear')
   return clr
+
+
+def hashFileLOCAL(file):
+  BUF_SIZE = os.path.getsize(file)
+
+  sha256 = hashlib.sha256()
+
+  with open(file, 'rb') as f:
+    while True:
+      data = f.read(BUF_SIZE)
+
+      if not data:
+        break
+
+      sha256.update(data)
+
+  return sha256.hexdigest()
+
+
+def hashFileURL(url):
+  newFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/newFile")
+  
+  fileRequest = requests.get(url, allow_redirects=True)
+  with open(newFile, 'wb')as f:
+    f.write(fileRequest.content)
+    f.close()
+
+  BUF_SIZE = os.path.getsize(newFile)
+  sha256 = hashlib.sha256()
+
+  with open(newFile, 'rb') as f:
+    while True:
+      data = f.read(BUF_SIZE)
+
+      if not data:
+        break
+
+      sha256.update(data)
+
+  return sha256.hexdigest()
 
 
 def CUSTOMinstall(URL, Destination, NewName, FileExt=""):
@@ -97,6 +138,39 @@ def preRun():
 
 
 def autoUpdate():
-  # Compares the hash of both SafeGuard and the recent release if they are not the 
-  # same then replace code with the new release
-  print()
+# Compares the hashes of the main file and the file on the website. And if they are not the same replace the 
+# main python files code with the newly downloaded file. If they are the same delete new file and print("SafeGuard is up to date")
+  localFile = hashFileURL('https://itzcozi.github.io/SafeGuard/data/safeguard-files/SafeGuard-Python.py')
+  webFile = hashFileLOCAL(Files.pythonFile)
+  
+  if localFile != webFile:
+    # Logs
+    with open (Files.logFile, "a") as f:
+      f.write("SafeGuard-Python.py !OUTDATED! - AT: " + now)
+    if debug:
+      print(Fore.RED + "SafeGuard-Python.py !OUTDATED! - AT: " + now + Style.RESET_ALL)
+      
+    with open (Files.logFile, "a") as f:
+      f.write("Updating SafeGuard-Python.py - AT: " + now)
+    if debug:
+      print(Fore.GREEN + "Updating SafeGuard-Python.py - AT: " + now + Style.RESET_ALL)
+      
+    # Update file
+    with open (Files.pythonFile, "w") as f:
+      f.truncate(0)
+      f.write(requests.get('https://itzcozi.github.io/SafeGuard/data/safeguard-files/SafeGuard-Python.py').text)
+    
+    # Logs
+    with open (Files.logFile, "a") as f:
+      f.write("SafeGuard-Python.py !UPDATED! - AT: " + now)
+    if debug:
+      print(Fore.GREEN + "SafeGuard-Python.py !UPDATED! - AT: " + now + Style.RESET_ALL)
+  
+  else:
+    print(Fore.GREEN + "SafeGuard is up to date" + Style.RESET_ALL)
+    with open(Files.logFile, "a") as f:
+      f.write("SafeGuard !UP-TO-DATE! - AT: " + now)
+    if debug:
+      print(Fore.GREEN + "SafeGuard !UP-TO-DATE! - AT: " + now + Style.RESET_ALL)
+      clear()
+      
