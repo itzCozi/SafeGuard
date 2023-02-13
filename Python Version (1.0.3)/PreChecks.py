@@ -140,8 +140,12 @@ def preRun():
 def autoUpdate():
 # Compares the hashes of the main file and the file on the website. And if they are not the same replace the 
 # main python files code with the newly downloaded file. If they are the same delete new file and print("SafeGuard is up to date")
-  localFile = hashFileURL('https://itzcozi.github.io/SafeGuard/data/safeguard-files/SafeGuard-Python.py')
-  webFile = hashFileLOCAL(Files.pythonFile)
+  webFile = hashFileURL('https://itzcozi.github.io/SafeGuard/data/safeguard-files/SafeGuard-Python.py')
+  localFile = hashFileLOCAL(Files.pythonFile)
+  
+  if debug:
+    print("Web file hash: " + webFile)
+    print("Local file hash: " + localFile)
   
   if localFile != webFile:
     # Logs
@@ -166,11 +170,17 @@ def autoUpdate():
     if debug:
       print(Fore.GREEN + "SafeGuard-Python.py !UPDATED! - AT: " + now + Style.RESET_ALL)
   
-  else:
+  elif localFile == webFile:
     print(Fore.GREEN + "SafeGuard is up to date" + Style.RESET_ALL)
     with open(Files.logFile, "a") as f:
       f.write("SafeGuard !UP-TO-DATE! - AT: " + now)
     if debug:
       print(Fore.GREEN + "SafeGuard !UP-TO-DATE! - AT: " + now + Style.RESET_ALL)
       clear()
+      
+  else:
+    print(Fore.RED + "UNKOWN-ERROR" + Style.RESET_ALL)
+    with open(Files.logFile, "a") as f:
+      f.write("!!UNKOWN-ERROR!! - AT: " + now)
+      f.close()
       
