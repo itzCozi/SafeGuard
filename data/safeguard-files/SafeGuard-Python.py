@@ -1,12 +1,9 @@
 # Make a program to check the known directorys for folders which usally hold viruses (Windows/Temp, roaming/Peer2Profit, All other malawarebytes detections) PYTHON PORT FROM C++
 """
 TODO: Review and refine code
-TODO: Test pre-Run function
-TODO: ADD FUNCTION TO CHECK FOR MISSING FILES AND DOWNLOAD THEM FROM WEBSITE
-TODO: Add direcory detected and undetected text logs instead of debuglogs
-TODO: test all phases and make sure they work
-TODO: Look at https://learn.microsoft.com/en-us/microsoft-365/security/intelligence/safety-scanner-download?view=o365-worldwide and maybe run it in phase_4
-TODO: When done finish C++ version
+TODO: Check all log statements and make sure they are correct and colorful
+TODO: Over engineer the shit outta this
+TODO: Find a solution to the C++ problem
 """
 
 # Imports
@@ -22,6 +19,15 @@ try:
   from colorama import Fore, Style
 except:
   print("Error: Missing required modules. Please install the following modules: os, requests, time, datetime, colorama, shutil, ctypes")
+
+# Pre run message
+def PreRunAdminCheck():
+  if ctypes.windll.shell32.IsUserAnAdmin():
+    pass
+  else:
+    print("SafeGuard Version-1.0.4 Anti-virus protection \nThis window will close momentarily...")
+
+PreRunAdminCheck()
 
 # Global Variables
 class Files():
@@ -83,7 +89,6 @@ def URLinstall(URL, Destination, NewName, FileExt=""):
 
 
 def CUSTOMinstall(URL, Destination, NewName, FileExt=""):
-
   # Download and write to file
   file_content = requests.get(URL)
   open(Destination + '/' + NewName + FileExt, "wb").write(file_content.content)
@@ -141,11 +146,14 @@ def systemRestore(systemRestore, sickbay):
     with open(Files.logFile, "a") as f:
       f.write("System restore !SKIPPED! - AT:" + now)
       if debug:
-        print(Fore.RED + "System restore !SKIPPED! - AT:" + now + Style.RESET_ALL)
+        print(Fore.RED + "System restore !SKIPPED! - AT:" + now +
+              Style.RESET_ALL)
 
 
 def diskCleanup(diskCleanup, sickbay):
   if diskCleanup == True or sickbay == True:
+
+    print("Disk usage: " + shutil.disk_usage("C:/"))
 
     diskCleanupYorN = input("Do you want to run disk cleanup? (y/n) \n")
 
@@ -168,8 +176,7 @@ def diskCleanup(diskCleanup, sickbay):
 
 
 def installRUNSafetyScanner():
-  CUSTOMinstall("https://go.microsoft.com/fwlink/?LinkId=212732",
-                "C:/Users/coope/Downloads", "SafetyScanner", ".exe")
+  CUSTOMinstall("https://go.microsoft.com/fwlink/?LinkId=212732", "C:/Users/coope/Downloads", "SafetyScanner", ".exe")
   os.startfile("C:/Users/coope/Downloads/SafetyScanner.exe")
 
 
@@ -194,7 +201,8 @@ def checkDirectorys():
       with open(Files.logFile, "a") as f:
         f.write("[" + iteam + "] Directory !DETECTED! - AT:" + now)
       if debug:
-        print(Fore.RED + "[" + iteam + "] Directory !DETECTED! - AT:" + now + Style.RESET_ALL)
+        print(Fore.RED + "[" + iteam + "] Directory !DETECTED! - AT:" + now +
+              Style.RESET_ALL)
 
       # Delete detected directory
       shutil.rmtree(iteam)
@@ -203,7 +211,8 @@ def checkDirectorys():
       with open(Files.logFile, "a") as f:
         f.write("[" + iteam + "] Directory !DELETED! - AT:" + now)
       if debug:
-        print(Fore.RED + "[" + iteam + "] Directory !DELETED! - AT:" + now + Style.RESET_ALL)
+        print(Fore.RED + "[" + iteam + "] Directory !DELETED! - AT:" + now +
+              Style.RESET_ALL)
 
       return True
 
@@ -224,14 +233,12 @@ def PHASE_1():
 
       # If checkDirectorys() returns true then run PHASE_2
       if checkDirectorys():
-        print(Fore.RED + Style.BRIGHT + "!RUNNING-EMMERGENCY-PROCEDURE!" +
-              Style.RESET_ALL)
+        print(Fore.RED + Style.BRIGHT + "!RUNNING-EMMERGENCY-PROCEDURE!" + Style.RESET_ALL)
         systemRestore(systemRestore == True, sickbay == False)
         clear()
 
         print("!THREAT-DETECTED! Start Phase-2?")
-        PHASE_2YorN = input(
-          "Your system scanned a malacious folder, do you want to take action? (y/n) \n")
+        PHASE_2YorN = input("Your system scanned a malacious folder, do you want to take action? (y/n) \n")
 
         if PHASE_2YorN == 'y':
           PHASE_2()
@@ -239,7 +246,6 @@ def PHASE_1():
           print("SafeGuard will now exit")
           sleep
           exit()
-
 
 def PHASE_2():
   # This will run diskcleanup after that ask to run windowsUpdate and tron
@@ -251,18 +257,18 @@ def PHASE_2():
   with open(Files.logFile, "a") as f:
     f.write("SafeGuard PHASE-2 initalized - AT:" + now)
     if debug:
-      print(Fore.BLUE + "SafeGuard PHASE-2 initalized - AT:" + now + Style.RESET_ALL)
+      print(Fore.BLUE + "SafeGuard PHASE-2 initalized - AT:" + now +
+            Style.RESET_ALL)
 
   print(
     "Your system scanned a malacious folder, don't worry we have removed it for you\n"
     "althogh the program that made the folder may still be on your system.\n"
     "Do you want to prep your system for disinfection? \n")
-  prepYorN = input(
-    "Do you want to run disk cleanup and windows update? (y/n) \n")
+  prepYorN = input("Do you want to run disk cleanup and windows update? (y/n) \n")
 
   if prepYorN == 'y':
     diskCleanup(diskCleanup == True, sickbay == False)
-    #systemRestore(systemRestore == True, sickbay == False)
+    systemRestore(systemRestore == True, sickbay == False)
   else:
     print("Prep skipped... QUITTING")
     quit()
@@ -313,7 +319,8 @@ def PHASE_3():
   with open(Files.logFile, "a") as f:
     f.write("SafeGuard !THREAT-ACTION-FINISHED! - AT:" + now)
   if debug:
-    print(Fore.BLUE + "SafeGuard !THREAT-ACTION-FINISHED! - AT:" + now + Style.RESET_ALL)
+    print(Fore.BLUE + "SafeGuard !THREAT-ACTION-FINISHED! - AT:" + now +
+          Style.RESET_ALL)
 
   # Start stinger
   StingerYorN = input(
@@ -321,10 +328,8 @@ def PHASE_3():
 
   if StingerYorN == 'y':
     URLinstall(
-      "https://downloadcenter.trellix.com/products/mcafee-avert/Stinger/stinger64.exe",
-      "Downloads", "Stinger")
-    os.startfile(
-      "C:/Users/coope/Python-SafeGuard/resources/tron/resources/Stinger.exe")
+      "https://downloadcenter.trellix.com/products/mcafee-avert/Stinger/stinger64.exe", "Downloads", "Stinger")
+    os.startfile("C:/Users/coope/Python-SafeGuard/resources/tron/resources/Stinger.exe")
 
   else:
     print(Fore.RED + "Stinger skipped" + Style.RESET_ALL)
