@@ -31,14 +31,14 @@ PreRunAdminCheck()
 
 # Global Variables
 class Files():
-  appUserFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/SafeGuard.app.ink");
-  pythondiscreteFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python-Discrete.py");
-  tronAdmin = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tronAdmin.ink");
-  tronPath = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tron");
-  appFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard.cmd");
-  pythonFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python.py");
-  logFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/logs.txt");
-  knownThreatFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/threatList.sg");
+  appUserFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/SafeGuard.app.ink")
+  pythondiscreteFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python-Discrete.py")
+  tronAdmin = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tronAdmin.ink")
+  tronPath = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tron")
+  appFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard.cmd")
+  pythonFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python.py")
+  logFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/logs.txt")
+  knownThreatFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/threatList.sg")
 
 
 sleep = time.sleep(3)
@@ -146,12 +146,13 @@ def systemRestore(systemRestore, sickbay):
     with open(Files.logFile, "a") as f:
       f.write("System restore !SKIPPED! - AT:" + now)
       if debug:
-        print(Fore.RED + "System restore !SKIPPED! - AT:" + now + Style.RESET_ALL)
+        print(Fore.RED + "System restore !SKIPPED! - AT:" + now +
+              Style.RESET_ALL)
 
 
 def diskCleanup(diskCleanup, sickbay):
   if diskCleanup == True or sickbay == True:
-    
+
     print("Disk usage: " + shutil.disk_usage("C:/"))
 
     diskCleanupYorN = input("Do you want to run disk cleanup? (y/n) \n")
@@ -175,8 +176,7 @@ def diskCleanup(diskCleanup, sickbay):
 
 
 def installRUNSafetyScanner():
-  CUSTOMinstall("https://go.microsoft.com/fwlink/?LinkId=212732",
-                "C:/Users/coope/Downloads", "SafetyScanner", ".exe")
+  CUSTOMinstall("https://go.microsoft.com/fwlink/?LinkId=212732", "C:/Users/coope/Downloads", "SafetyScanner", ".exe")
   os.startfile("C:/Users/coope/Downloads/SafetyScanner.exe")
 
 
@@ -201,7 +201,8 @@ def checkDirectorys():
       with open(Files.logFile, "a") as f:
         f.write("[" + iteam + "] Directory !DETECTED! - AT:" + now)
       if debug:
-        print(Fore.RED + "[" + iteam + "] Directory !DETECTED! - AT:" + now + Style.RESET_ALL)
+        print(Fore.RED + "[" + iteam + "] Directory !DETECTED! - AT:" + now +
+              Style.RESET_ALL)
 
       # Delete detected directory
       shutil.rmtree(iteam)
@@ -210,7 +211,8 @@ def checkDirectorys():
       with open(Files.logFile, "a") as f:
         f.write("[" + iteam + "] Directory !DELETED! - AT:" + now)
       if debug:
-        print(Fore.RED + "[" + iteam + "] Directory !DELETED! - AT:" + now + Style.RESET_ALL)
+        print(Fore.RED + "[" + iteam + "] Directory !DELETED! - AT:" + now +
+              Style.RESET_ALL)
 
       return True
 
@@ -231,14 +233,12 @@ def PHASE_1():
 
       # If checkDirectorys() returns true then run PHASE_2
       if checkDirectorys():
-        print(Fore.RED + Style.BRIGHT + "!RUNNING-EMMERGENCY-PROCEDURE!" +
-              Style.RESET_ALL)
+        print(Fore.RED + Style.BRIGHT + "!RUNNING-EMMERGENCY-PROCEDURE!" + Style.RESET_ALL)
         systemRestore(systemRestore == True, sickbay == False)
         clear()
 
         print("!THREAT-DETECTED! Start Phase-2?")
-        PHASE_2YorN = input(
-          "Your system scanned a malacious folder, do you want to take action? (y/n) \n")
+        PHASE_2YorN = input("Your system scanned a malacious folder, do you want to take action? (y/n) \n")
 
         if PHASE_2YorN == 'y':
           PHASE_2()
@@ -246,7 +246,6 @@ def PHASE_1():
           print("SafeGuard will now exit")
           sleep
           exit()
-
 
 def PHASE_2():
   # This will run diskcleanup after that ask to run windowsUpdate and tron
@@ -258,7 +257,8 @@ def PHASE_2():
   with open(Files.logFile, "a") as f:
     f.write("SafeGuard PHASE-2 initalized - AT:" + now)
     if debug:
-      print(Fore.BLUE + "SafeGuard PHASE-2 initalized - AT:" + now + Style.RESET_ALL)
+      print(Fore.BLUE + "SafeGuard PHASE-2 initalized - AT:" + now +
+            Style.RESET_ALL)
 
   print(
     "Your system scanned a malacious folder, don't worry we have removed it for you\n"
@@ -268,7 +268,7 @@ def PHASE_2():
 
   if prepYorN == 'y':
     diskCleanup(diskCleanup == True, sickbay == False)
-    #systemRestore(systemRestore == True, sickbay == False)
+    systemRestore(systemRestore == True, sickbay == False)
   else:
     print("Prep skipped... QUITTING")
     quit()
@@ -319,7 +319,8 @@ def PHASE_3():
   with open(Files.logFile, "a") as f:
     f.write("SafeGuard !THREAT-ACTION-FINISHED! - AT:" + now)
   if debug:
-    print(Fore.BLUE + "SafeGuard !THREAT-ACTION-FINISHED! - AT:" + now + Style.RESET_ALL)
+    print(Fore.BLUE + "SafeGuard !THREAT-ACTION-FINISHED! - AT:" + now +
+          Style.RESET_ALL)
 
   # Start stinger
   StingerYorN = input(
@@ -327,10 +328,8 @@ def PHASE_3():
 
   if StingerYorN == 'y':
     URLinstall(
-      "https://downloadcenter.trellix.com/products/mcafee-avert/Stinger/stinger64.exe",
-      "Downloads", "Stinger")
-    os.startfile(
-      "C:/Users/coope/Python-SafeGuard/resources/tron/resources/Stinger.exe")
+      "https://downloadcenter.trellix.com/products/mcafee-avert/Stinger/stinger64.exe", "Downloads", "Stinger")
+    os.startfile("C:/Users/coope/Python-SafeGuard/resources/tron/resources/Stinger.exe")
 
   else:
     print(Fore.RED + "Stinger skipped" + Style.RESET_ALL)
