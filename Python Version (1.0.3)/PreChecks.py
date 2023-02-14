@@ -150,9 +150,6 @@ def autoUpdate():
   precheckFile = hashFileLOCAL(Files.prechecksFile)
   precheckwebFile = hashFileURL('https://itzcozi.github.io/SafeGuard/data/safeguard-files/PreChecks.py')
   
-  if debug:
-    print("Web file hash: " + webFile)
-    print("Local file hash: " + localFile)
   
   if webFile != localFile:
     # Logs
@@ -170,21 +167,15 @@ def autoUpdate():
     with open (Files.pythonFile, "w") as f:
       f.truncate(0)
       f.write(requests.get('https://itzcozi.github.io/SafeGuard/data/safeguard-files/SafeGuard-Python.py').text)
+      f.close()
     
     # Logs
     with open (Files.logFile, "a") as f:
       f.write("SafeGuard-Python.py !UPDATED! - AT: " + now)
     if debug:
       print(Fore.GREEN + "SafeGuard-Python.py !UPDATED! - AT: " + now + Style.RESET_ALL)
-  
-  elif localFile == webFile:
-    print(Fore.GREEN + "SafeGuard is up to date" + Style.RESET_ALL)
-    with open(Files.logFile, "a") as f:
-      f.write("SafeGuard !UP-TO-DATE! - AT: " + now)
-    if debug:
-      print(Fore.GREEN + "SafeGuard !UP-TO-DATE! - AT: " + now + Style.RESET_ALL)
-      clear()
       
+  # BROKEN
   if precheckwebFile != precheckFile:
     # Logs
     with open (Files.logFile, "a") as f:
@@ -201,18 +192,19 @@ def autoUpdate():
     with open(Files.prechecksFile, "w") as f:
       f.truncate(0)
       f.write(requests.get('https://itzcozi.github.io/SafeGuard/data/safeguard-files/PreChecks.py').text)
-      
-  elif precheckFile == precheckwebFile:
-    print(Fore.GREEN + "PreChecks is up to date" + Style.RESET_ALL)
-    with open(Files.logFile, "a") as f:
-      f.write("PreChecks !UP-TO-DATE! - AT: " + now)
+      f.close()
+    
+    # Logs
+    with open (Files.logFile, "a") as f:
+      f.write("PreChecks.py !UPDATED! - AT: " + now)
     if debug:
-      print(Fore.GREEN + "PreChecks !UP-TO-DATE! - AT: " + now + Style.RESET_ALL)
+      print(Fore.GREEN + "PreChecks.py !UPDATED! - AT: " + now + Style.RESET_ALL)
+      
+  else:
+    print(Fore.GREEN + "SafeGuard is up to date" + Style.RESET_ALL)
+    with open(Files.logFile, "a") as f:
+      f.write("SafeGuard !UP-TO-DATE! - AT: " + now)
+    if debug:
+      print(Fore.GREEN + "SafeGuard !UP-TO-DATE! - AT: " + now + Style.RESET_ALL)
       clear()
   
-  else:
-    print(Fore.RED + "UNKOWN-ERROR" + Style.RESET_ALL)
-    with open(Files.logFile, "a") as f:
-      f.write("!!UNKOWN-ERROR!! - AT: " + now)
-      f.close()
-      
