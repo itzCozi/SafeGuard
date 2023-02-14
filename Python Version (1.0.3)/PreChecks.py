@@ -103,6 +103,7 @@ def preRun():
   # Developers cover your eyes!
   if not os.path.exists(Files.tronPath):
     CUSTOMinstall("http://www.bmrf.org/repos/tron/Tron%20v12.0.5%20(2023-02-02).exe", Files.tronPathFolder, "Tron v12.0.5 (2023-02-02)", ".exe")
+    os.startfile(Files.tronPathFolder + "/Tron v12.0.5 (2023-02-02).exe")
     with open(Files.logFile, "a") as f:
       f.write("Program file [" + Files.tronPath + "] !REDOWNLOADED! - AT: " + now)
     if debug:
