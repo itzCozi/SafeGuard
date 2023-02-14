@@ -27,7 +27,7 @@ def PreRunAdminCheck():
   if ctypes.windll.shell32.IsUserAnAdmin():
     pass
   else:
-    print("SafeGuard Version-1.0.4 Anti-virus protection \nThis window will close momentarily...")
+    print("SafeGuard Version-1.0.3 Anti-virus protection \nThis window will close momentarily...")
 
 PreRunAdminCheck()
 
