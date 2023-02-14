@@ -174,6 +174,14 @@ def autoUpdate():
       f.write(requests.get('https://itzcozi.github.io/SafeGuard/data/safeguard-files/SafeGuard-Python.py').text)
       f.close()
     
+  elif webFile == localFile:
+    print(Fore.GREEN + "SafeGuard is up to date" + Style.RESET_ALL)
+    with open(Files.logFile, "a") as f:
+      f.write("SafeGuard !UP-TO-DATE! - AT: " + now)
+    if debug:
+      print(Fore.GREEN + "SafeGuard !UP-TO-DATE! - AT: " + now + Style.RESET_ALL)
+      clear()
+    
     # Logs
     with open (Files.logFile, "a") as f:
       f.write("SafeGuard-Python.py !UPDATED! - AT: " + now)
@@ -210,13 +218,5 @@ def autoUpdate():
       f.write("PreChecks !UP-TO-DATE! - AT: " + now)
     if debug:
       print(Fore.GREEN + "PreChecks !UP-TO-DATE! - AT: " + now + Style.RESET_ALL)
-      clear()
-  
-  elif webFile == localFile:
-    print(Fore.GREEN + "SafeGuard is up to date" + Style.RESET_ALL)
-    with open(Files.logFile, "a") as f:
-      f.write("SafeGuard !UP-TO-DATE! - AT: " + now)
-    if debug:
-      print(Fore.GREEN + "SafeGuard !UP-TO-DATE! - AT: " + now + Style.RESET_ALL)
       clear()
   
