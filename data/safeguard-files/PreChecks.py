@@ -11,29 +11,29 @@ except:
 
 
 class Files():
-  appUserFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/SafeGuard.app")
-  appUserFileFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard")
+  appUserFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/SafeGuard.app");
+  appUserFileFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard");
 
-  pythondiscreteFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python-Discrete.py")
-  pythondiscreteFileFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources")
+  pythondiscreteFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python-Discrete.py");
+  pythondiscreteFileFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources");
 
   tronAdmin = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tronAdmin")
-  tronAdminFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources")
+  tronAdminFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources");
 
-  tronPath = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tron")
-  tronPathFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources")
+  tronPath = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tron");
+  tronPathFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources");
 
-  appFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard.cmd")
-  appUserFileFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources")
+  appFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard.cmd");
+  appUserFileFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources");
 
-  pythonFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python.py")
-  pythonFileFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources")
+  pythonFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python.py");
+  pythonFileFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources");
 
-  logFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/logs.txt")
-  logFileFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources")
+  logFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/logs.txt");
+  logFileFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources");
 
-  knownThreatFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/threatList.sg")
-  knownThreatFileFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources")
+  knownThreatFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/threatList.sg");
+  knownThreatFileFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources");
 
 
 sleep = time.sleep(3)
