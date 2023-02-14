@@ -147,14 +147,14 @@ def autoUpdate():
   webFile = hashFileURL('https://itzcozi.github.io/SafeGuard/data/safeguard-files/SafeGuard-Python.py')
   localFile = hashFileLOCAL(Files.pythonFile)
   
-  precheckFile = hashFileLOCAL(Files.precheckFile)
+  precheckFile = hashFileLOCAL(Files.prechecksFile)
   precheckwebFile = hashFileURL('https://itzcozi.github.io/SafeGuard/data/safeguard-files/PreChecks.py')
   
   if debug:
     print("Web file hash: " + webFile)
     print("Local file hash: " + localFile)
   
-  if localFile != webFile:
+  if webFile != localFile:
     # Logs
     with open (Files.logFile, "a") as f:
       f.write("SafeGuard-Python.py !OUTDATED! - AT: " + now)
@@ -185,7 +185,7 @@ def autoUpdate():
       print(Fore.GREEN + "SafeGuard !UP-TO-DATE! - AT: " + now + Style.RESET_ALL)
       clear()
       
-  if precheckFile != precheckwebFile:
+  if precheckwebFile != precheckFile:
     # Logs
     with open (Files.logFile, "a") as f:
       f.write("PreChecks.py !OUTDATED! - AT: " + now)
