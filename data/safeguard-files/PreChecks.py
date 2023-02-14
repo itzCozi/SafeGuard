@@ -172,6 +172,7 @@ def autoUpdate():
     with open (Files.pythonFile, "w") as f:
       f.truncate(0)
       f.write(requests.get('https://itzcozi.github.io/SafeGuard/data/safeguard-files/SafeGuard-Python.py').text)
+      f.close()
     
     # Logs
     with open (Files.logFile, "a") as f:
@@ -203,6 +204,13 @@ def autoUpdate():
     with open(Files.prechecksFile, "w") as f:
       f.truncate(0)
       f.write(requests.get('https://itzcozi.github.io/SafeGuard/data/safeguard-files/PreChecks.py').text)
+      f.close()
+    
+    # Logs
+    with open (Files.logFile, "a") as f:
+      f.write("PreChecks.py !UPDATED! - AT: " + now)
+    if debug:
+      print(Fore.GREEN + "PreChecks.py !UPDATED! - AT: " + now + Style.RESET_ALL)
       
   if precheckFile == precheckwebFile:
     print(Fore.GREEN + "PreChecks is up to date" + Style.RESET_ALL)
