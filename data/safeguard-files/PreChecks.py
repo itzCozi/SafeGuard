@@ -212,9 +212,3 @@ def autoUpdate():
       print(Fore.GREEN + "PreChecks !UP-TO-DATE! - AT: " + now + Style.RESET_ALL)
       clear()
   
-  else:
-    print(Fore.RED + "UNKOWN-ERROR" + Style.RESET_ALL)
-    with open(Files.logFile, "a") as f:
-      f.write("!!UNKOWN-ERROR!! - AT: " + now)
-      f.close()
-      
