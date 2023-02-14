@@ -1,6 +1,7 @@
 # Make a program to check the known directorys for folders which usally hold viruses (Windows/Temp, roaming/Peer2Profit, All other malawarebytes detections) PYTHON PORT FROM C++
 """
 TODO: Review and refine code
+TODO: Add PreChecks.py to autoUpdate() function
 TODO: Over engineer the shit outta this
 TODO: Find a solution to the C++ problem
 """
@@ -19,6 +20,7 @@ try:
   from colorama import Fore, Style
 except:
   print("Error: Missing required modules. Please install the following modules: os, requests, time, datetime, colorama, shutil, ctypes")
+
 
 # Pre run message
 def PreRunAdminCheck():
