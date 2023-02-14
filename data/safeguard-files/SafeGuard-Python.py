@@ -1,8 +1,6 @@
 # Make a program to check the known directorys for folders which usally hold viruses (Windows/Temp, roaming/Peer2Profit, All other malawarebytes detections) PYTHON PORT FROM C++
 """
 TODO: Review and refine code
-TODO: ADD AUTO-UPDATE TO PRECHECKS
-TODO: Check all log statements and make sure they are correct and colorful
 TODO: Over engineer the shit outta this
 TODO: Find a solution to the C++ problem
 """
@@ -149,8 +147,7 @@ def systemRestore(systemRestore, sickbay):
     with open(Files.logFile, "a") as f:
       f.write("System restore !SKIPPED! - AT:" + now)
       if debug:
-        print(Fore.RED + "System restore !SKIPPED! - AT:" + now +
-              Style.RESET_ALL)
+        print(Fore.RED + "System restore !SKIPPED! - AT:" + now + Style.RESET_ALL)
 
 
 def diskCleanup(diskCleanup, sickbay):
@@ -204,8 +201,7 @@ def checkDirectorys():
       with open(Files.logFile, "a") as f:
         f.write("[" + iteam + "] Directory !DETECTED! - AT:" + now)
       if debug:
-        print(Fore.RED + "[" + iteam + "] Directory !DETECTED! - AT:" + now +
-              Style.RESET_ALL)
+        print(Fore.RED + "[" + iteam + "] Directory !DETECTED! - AT:" + now + Style.RESET_ALL)
 
       # Delete detected directory
       shutil.rmtree(iteam)
@@ -214,8 +210,7 @@ def checkDirectorys():
       with open(Files.logFile, "a") as f:
         f.write("[" + iteam + "] Directory !DELETED! - AT:" + now)
       if debug:
-        print(Fore.RED + "[" + iteam + "] Directory !DELETED! - AT:" + now +
-              Style.RESET_ALL)
+        print(Fore.RED + "[" + iteam + "] Directory !DELETED! - AT:" + now + Style.RESET_ALL)
 
       return True
 
@@ -295,7 +290,6 @@ def PHASE_2():
 
   else:
     print(Fore.RED + "Invaild Input!" + Style.RESET_ALL)
-
 
 def PHASE_3():
   # This will run tron as admin and then when tron is done it run stinger
