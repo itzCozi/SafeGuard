@@ -17,6 +17,9 @@ class Files():
   pythondiscreteFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python-Discrete.py");
   pythondiscreteFileFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources");
 
+  prechecksFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/PreChecks.py");
+  prechecksFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources");
+
   tronAdmin = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tronAdmin")
   tronAdminFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources");
 
@@ -144,11 +147,14 @@ def autoUpdate():
   webFile = hashFileURL('https://itzcozi.github.io/SafeGuard/data/safeguard-files/SafeGuard-Python.py')
   localFile = hashFileLOCAL(Files.pythonFile)
   
+  precheckFile = hashFileLOCAL(Files.precheckFile)
+  precheckwebFile = hashFileURL('https://itzcozi.github.io/SafeGuard/data/safeguard-files/PreChecks.py')
+  
   if debug:
     print("Web file hash: " + webFile)
     print("Local file hash: " + localFile)
   
-  if webFile != localFile:
+  if localFile != webFile:
     # Logs
     with open (Files.logFile, "a") as f:
       f.write("SafeGuard-Python.py !OUTDATED! - AT: " + now)
@@ -159,7 +165,7 @@ def autoUpdate():
       f.write("Updating SafeGuard-Python.py - AT: " + now)
     if debug:
       print(Fore.GREEN + "Updating SafeGuard-Python.py - AT: " + now + Style.RESET_ALL)
-      
+    
     # Update file
     with open (Files.pythonFile, "w") as f:
       f.truncate(0)
@@ -179,6 +185,31 @@ def autoUpdate():
       print(Fore.GREEN + "SafeGuard !UP-TO-DATE! - AT: " + now + Style.RESET_ALL)
       clear()
       
+  if precheckFile != precheckwebFile:
+    # Logs
+    with open (Files.logFile, "a") as f:
+      f.write("PreChecks.py !OUTDATED! - AT: " + now)
+    if debug:
+      print(Fore.RED + "PreChecks.py !OUTDATED! - AT: " + now + Style.RESET_ALL)
+      
+    with open (Files.logFile, "a") as f:
+      f.write("Updating PreChecks.py - AT: " + now)
+    if debug:
+      print(Fore.GREEN + "Updating PreChecks.py - AT: " + now + Style.RESET_ALL)
+    
+    # Update file
+    with open(Files.prechecksFile, "w") as f:
+      f.truncate(0)
+      f.write(requests.get('https://itzcozi.github.io/SafeGuard/data/safeguard-files/PreChecks.py').text)
+      
+  elif precheckFile == precheckwebFile:
+    print(Fore.GREEN + "PreChecks is up to date" + Style.RESET_ALL)
+    with open(Files.logFile, "a") as f:
+      f.write("PreChecks !UP-TO-DATE! - AT: " + now)
+    if debug:
+      print(Fore.GREEN + "PreChecks !UP-TO-DATE! - AT: " + now + Style.RESET_ALL)
+      clear()
+  
   else:
     print(Fore.RED + "UNKOWN-ERROR" + Style.RESET_ALL)
     with open(Files.logFile, "a") as f:
