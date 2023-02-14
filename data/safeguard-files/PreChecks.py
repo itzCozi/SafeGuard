@@ -70,7 +70,7 @@ def hashFileURL(url):
   newFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/newFile")
   
   with open (newFile, "w") as f:
-    f.write(requests.get('https://itzcozi.github.io/SafeGuard/data/safeguard-files/SafeGuard-Python.py').text)
+    f.write(requests.get(url).text)
     f.close()
 
   BUF_SIZE = os.path.getsize(newFile)
@@ -150,11 +150,6 @@ def autoUpdate():
   precheckFile = hashFileLOCAL(Files.prechecksFile)
   precheckwebFile = hashFileURL('https://itzcozi.github.io/SafeGuard/data/safeguard-files/PreChecks.py')
   
-  if debug:
-    print("Python web file hash: " + webFile)
-    print("Python local file hash: " + localFile)
-    print("Prechecks web file hash: " + precheckwebFile)
-    print("Prechecks local file hash: " + precheckFile)
   
   if webFile != localFile:
     # Logs
@@ -180,6 +175,7 @@ def autoUpdate():
     if debug:
       print(Fore.GREEN + "SafeGuard-Python.py !UPDATED! - AT: " + now + Style.RESET_ALL)
       
+  # BROKEN
   if precheckwebFile != precheckFile:
     # Logs
     with open (Files.logFile, "a") as f:
