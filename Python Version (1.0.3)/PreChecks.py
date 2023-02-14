@@ -70,7 +70,7 @@ def hashFileURL(url):
   newFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/newFile")
   
   with open (newFile, "w") as f:
-    f.write(requests.get('https://itzcozi.github.io/SafeGuard/data/safeguard-files/SafeGuard-Python.py').text)
+    f.write(requests.get(url).text)
     f.close()
 
   BUF_SIZE = os.path.getsize(newFile)
