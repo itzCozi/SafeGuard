@@ -179,14 +179,6 @@ def autoUpdate():
       f.write("SafeGuard-Python.py !UPDATED! - AT: " + now)
     if debug:
       print(Fore.GREEN + "SafeGuard-Python.py !UPDATED! - AT: " + now + Style.RESET_ALL)
-  
-  if webFile == localFile:
-    print(Fore.GREEN + "SafeGuard is up to date" + Style.RESET_ALL)
-    with open(Files.logFile, "a") as f:
-      f.write("SafeGuard !UP-TO-DATE! - AT: " + now)
-    if debug:
-      print(Fore.GREEN + "SafeGuard !UP-TO-DATE! - AT: " + now + Style.RESET_ALL)
-      clear()
       
   if precheckwebFile != precheckFile:
     # Logs
@@ -212,11 +204,19 @@ def autoUpdate():
     if debug:
       print(Fore.GREEN + "PreChecks.py !UPDATED! - AT: " + now + Style.RESET_ALL)
       
-  if precheckFile == precheckwebFile:
+  elif precheckFile == precheckwebFile:
     print(Fore.GREEN + "PreChecks is up to date" + Style.RESET_ALL)
     with open(Files.logFile, "a") as f:
       f.write("PreChecks !UP-TO-DATE! - AT: " + now)
     if debug:
       print(Fore.GREEN + "PreChecks !UP-TO-DATE! - AT: " + now + Style.RESET_ALL)
+      clear()
+  
+  elif webFile == localFile:
+    print(Fore.GREEN + "SafeGuard is up to date" + Style.RESET_ALL)
+    with open(Files.logFile, "a") as f:
+      f.write("SafeGuard !UP-TO-DATE! - AT: " + now)
+    if debug:
+      print(Fore.GREEN + "SafeGuard !UP-TO-DATE! - AT: " + now + Style.RESET_ALL)
       clear()
   
