@@ -92,7 +92,6 @@ def hashFileURL(url):
 
 
 def CUSTOMinstall(URL, Destination, NewName, FileExt=""):
-
   # Download and write to file
   file_content = requests.get(URL)
   open(Destination + '/' + NewName + FileExt, "wb").write(file_content.content)
@@ -209,5 +208,6 @@ def autoUpdate():
       f.write("SafeGuard !UP-TO-DATE! - AT: " + now)
     if debug:
       print(Fore.GREEN + "SafeGuard !UP-TO-DATE! - AT: " + now + Style.RESET_ALL)
-      clear()
+    sleep()
+    clear()
   
