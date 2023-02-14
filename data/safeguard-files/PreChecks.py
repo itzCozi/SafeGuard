@@ -156,7 +156,7 @@ def autoUpdate():
     print("Prechecks web file hash: " + precheckwebFile)
     print("Prechecks local file hash: " + precheckFile)
   
-  elif webFile != localFile:
+  if webFile != localFile:
     # Logs
     with open (Files.logFile, "a") as f:
       f.write("SafeGuard-Python.py !OUTDATED! - AT: " + now)
@@ -179,7 +179,7 @@ def autoUpdate():
     if debug:
       print(Fore.GREEN + "SafeGuard-Python.py !UPDATED! - AT: " + now + Style.RESET_ALL)
   
-  elif webFile == localFile:
+  if webFile == localFile:
     print(Fore.GREEN + "SafeGuard is up to date" + Style.RESET_ALL)
     with open(Files.logFile, "a") as f:
       f.write("SafeGuard !UP-TO-DATE! - AT: " + now)
@@ -187,7 +187,7 @@ def autoUpdate():
       print(Fore.GREEN + "SafeGuard !UP-TO-DATE! - AT: " + now + Style.RESET_ALL)
       clear()
       
-  elif precheckwebFile != precheckFile:
+  if precheckwebFile != precheckFile:
     # Logs
     with open (Files.logFile, "a") as f:
       f.write("PreChecks.py !OUTDATED! - AT: " + now)
@@ -204,7 +204,7 @@ def autoUpdate():
       f.truncate(0)
       f.write(requests.get('https://itzcozi.github.io/SafeGuard/data/safeguard-files/PreChecks.py').text)
       
-  elif precheckFile == precheckwebFile:
+  if precheckFile == precheckwebFile:
     print(Fore.GREEN + "PreChecks is up to date" + Style.RESET_ALL)
     with open(Files.logFile, "a") as f:
       f.write("PreChecks !UP-TO-DATE! - AT: " + now)
