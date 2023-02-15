@@ -208,6 +208,5 @@ def autoUpdate():
       f.write("SafeGuard !UP-TO-DATE! - AT: " + now)
     if debug:
       print(Fore.GREEN + "SafeGuard !UP-TO-DATE! - AT: " + now + Style.RESET_ALL)
-    sleep()
     clear()
   
