@@ -1,5 +1,6 @@
 # Make a program to check the known directorys for folders which usally hold viruses (Windows/Temp, roaming/Peer2Profit, All other malawarebytes detections) PYTHON PORT FROM C++
 """
+TODO: Fix all if debug: statment (Indentation Error)
 TODO: Review and refine code
 TODO: Over engineer the shit outta this
 TODO: Find a solution to the C++ problem
