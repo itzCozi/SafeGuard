@@ -242,7 +242,6 @@ def PHASE_1():
 
     if PHASE_2YorN == 'y':
       PHASE_2()
-    
     else:
       print("SafeGuard will now exit")
       sleep
