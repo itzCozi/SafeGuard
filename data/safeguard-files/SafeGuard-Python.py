@@ -228,24 +228,30 @@ def PHASE_1():
   # Log
   with open(Files.logFile, "a") as f:
     f.write("SafeGuard PHASE-1 initalized - AT:" + now)
-    if debug:
-      print(Fore.BLUE + "SafeGuard PHASE-1 initalized - AT:" + now + Style.RESET_ALL)
+  if debug:
+    print(Fore.BLUE + "SafeGuard PHASE-1 initalized - AT:" + now + Style.RESET_ALL)
 
-      # If checkDirectorys() returns true then run PHASE_2
-      if checkDirectorys():
-        print(Fore.RED + Style.BRIGHT + "!RUNNING-EMMERGENCY-PROCEDURE!" + Style.RESET_ALL)
-        systemRestore(systemRestore == True, sickbay == False)
-        clear()
+  # If checkDirectorys() returns true then run PHASE_2
+  if checkDirectorys():
+    print(Fore.RED + Style.BRIGHT + "!RUNNING-EMMERGENCY-PROCEDURE!" + Style.RESET_ALL)
+    systemRestore(systemRestore == True, sickbay == False)
+    clear()
 
-        print("!THREAT-DETECTED! Start Phase-2?")
-        PHASE_2YorN = input("Your system scanned a malacious folder, do you want to take action? (y/n) \n")
+    print("!THREAT-DETECTED! Start Phase-2?")
+    PHASE_2YorN = input("Your system scanned a malacious folder, do you want to take action? (y/n) \n")
 
-        if PHASE_2YorN == 'y':
-          PHASE_2()
-        else:
-          print("SafeGuard will now exit")
-          sleep
-          exit()
+    if PHASE_2YorN == 'y':
+      PHASE_2()
+    else:
+      print("SafeGuard will now exit")
+      sleep
+      exit()
+  
+  else:
+        print("SafeGuard will now exit")
+        sleep
+        exit()
+    
 
 def PHASE_2():
   # This will run diskcleanup after that ask to run windowsUpdate and tron
