@@ -2,9 +2,7 @@
 // (https://stackoverflow.com/a/20372880)
 
 // Imports
-#include <stdlib.h>
-//#include <windows.h>
-
+#include <windows.h>
 #include <filesystem>
 #include <fstream>
 #include <time.h> 
@@ -20,8 +18,11 @@ time_t my_time = time(NULL);
 std::string logPath = "data/logs.sg";
 
 // Logs
-std::string systemRestoreLog = "System restored"; 
-printf("%s", ctime(&my_time));
+class LogMessages {
+  public:
+    std::string systemRestoreLog = "System restored";
+
+}
 
 
 // Colors
