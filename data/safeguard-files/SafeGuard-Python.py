@@ -23,24 +23,22 @@ except:
 
 
 # Pre run message
-def PreRunAdminCheck():
-  if ctypes.windll.shell32.IsUserAnAdmin():
-    pass
-  else:
-    print("SafeGuard Version-1.0.3 Anti-virus protection \nThis window will close momentarily...")
+if ctypes.windll.shell32.IsUserAnAdmin():
+  pass
+else:
+  print("SafeGuard Version-1.0.3 Anti-virus protection \nThis window will close momentarily...")
 
-PreRunAdminCheck()
 
 # Global Variables
 class Files():
-  appUserFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/SafeGuard.app.ink");
-  pythondiscreteFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python-Discrete.py");
-  tronAdmin = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tronAdmin.ink");
-  tronPath = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tron");
-  appFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard.cmd");
-  pythonFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python.py");
-  logFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/logs.txt");
-  knownThreatFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/threatList.sg");
+  appUserFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/SafeGuard.app.ink")
+  pythondiscreteFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python-Discrete.py")
+  tronAdmin = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tronAdmin.ink")
+  tronPath = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tron")
+  appFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard.cmd")
+  pythonFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python.py")
+  logFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/logs.txt")
+  knownThreatFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/threatList.sg")
 
 
 sleep = time.sleep(3)
@@ -64,11 +62,14 @@ with open(Files.logFile, "a") as f:
   if os.path.getsize(Files.knownThreatFile) == 0:
     f.write("!THREAT-LIST-EMPTY! No directorys scanned. - AT: " + now)
     print("!THREAT-LIST-EMPTY! No directorys scanned.")
-  f.write("!THREATS-LOADED! " + now)
-if debug:
-  print("!THREATS-LOADED! ")
-  print(data_into_list)
-knownThreats.close()
+    knownThreats.close()
+  if debug:
+    print("!THREATS-LOADED! ")
+    print(data_into_list)
+    knownThreats.close()
+  else:
+    f.write("!THREATS-LOADED! " + now)
+    knownThreats.close()
 
 
 # Functions
@@ -88,7 +89,7 @@ def URLinstall(URL, Destination, NewName, FileExt=""):
   with open(Files.logFile, "a") as f:
     f.write("Downloaded file to: " + Destination + " - AT: " + now)
   if debug:
-    print(Fore.GREEN + "Downloaded file to: " + Destination + Style.RESET_ALL)
+    print(Fore.BLUE + "Downloaded file to: " + Destination + Style.RESET_ALL)
 
 
 def CUSTOMinstall(URL, Destination, NewName, FileExt=""):
@@ -98,7 +99,7 @@ def CUSTOMinstall(URL, Destination, NewName, FileExt=""):
   with open(Files.logFile, "a") as f:
     f.write("Downloaded file to: " + Destination + " - AT: " + now)
   if debug:
-    print(Fore.GREEN + "Downloaded file to: " + Destination + Style.RESET_ALL)
+    print(Fore.BLUE + "Downloaded file to: " + Destination + Style.RESET_ALL)
 
 
 def clear():
@@ -111,7 +112,8 @@ def checkWindowsUpdate(sickbay):
   os.system("Get-WindowsUpdate")
   clear()
 
-  updateConfirmation = input("Do you want to update Windows10? (y/n) \n")
+  updateConfirmation = input(
+    "Are you sure you want to update Windows10? (y/n) \n")
 
   if updateConfirmation == 'y' or sickbay == True:
     os.system("Install-WindowsUpdate")
@@ -119,14 +121,14 @@ def checkWindowsUpdate(sickbay):
     # Log
     with open(Files.logFile, "a") as f:
       f.write("Windows10 updated - AT: " + now)
-      if debug:
-        print(Fore.GREEN + "Windows updated AT: " + now + Style.RESET_ALL)
+    if debug:
+      print(Fore.BLUE + "Windows updated AT: " + now + Style.RESET_ALL)
 
   if updateConfirmation == 'n':
     with open(Files.logFile, "a") as f:
       f.write("Update skipped - AT: " + now)
     if debug:
-      print(Fore.RED + "Update skipped" + now + Style.RESET_ALL)
+      print(Fore.BLUE + "Update skipped" + now + Style.RESET_ALL)
 
   else:
     print(Fore.RED + "Invaild Input!" + Style.RESET_ALL)
@@ -141,15 +143,15 @@ def systemRestore(systemRestore, sickbay):
     # Log
     with open(Files.logFile, "a") as f:
       f.write("System restored - AT: " + now)
-      if debug:
-        print(Fore.GREEN + "System restored - AT: " + now + Style.RESET_ALL)
+    if debug:
+      print(Fore.GREEN + "System restored - AT: " + now + Style.RESET_ALL)
 
   else:
     # Log
     with open(Files.logFile, "a") as f:
       f.write("System restore !SKIPPED! - AT:" + now)
-      if debug:
-        print(Fore.RED + "System restore !SKIPPED! - AT:" + now + Style.RESET_ALL)
+    if debug:
+      print(Fore.RED + "System restore !SKIPPED! - AT:" + now + Style.RESET_ALL)
 
 
 def diskCleanup(diskCleanup, sickbay):
@@ -165,16 +167,16 @@ def diskCleanup(diskCleanup, sickbay):
       # Log
       with open(Files.logFile, "a") as f:
         f.write("Disk cleanup - AT:" + now)
-        if debug:
-          print(Fore.BLUE + "Disk cleanup - AT:" + now + Style.RESET_ALL)
+      if debug:
+        print(Fore.GREEN + "Disk cleanup - AT:" + now + Style.RESET_ALL)
 
     else:
       with open(Files.logFile, "a") as f:
         f.write("Disk cleanup !SKIPPED! - AT:" + now)
-        if debug:
-          print(Fore.RED + "Disk cleanup !SKIPPED! - AT:" + now + Style.RESET_ALL)
+      if debug:
+        print(Fore.RED + "Disk cleanup !SKIPPED! - AT:" + now + Style.RESET_ALL)
   else:
-    print(Fore.RED + "Failed to run disk cleanup" + Style.RESET_ALL)
+    print(Fore.BLUE + "Failed to run disk cleanup" + Style.RESET_ALL)
 
 
 def installRUNSafetyScanner():
@@ -188,8 +190,8 @@ def startTron():
   # Log
   with open(Files.logFile, "a") as f:
     f.write("Tron.bat activated - AT:" + now)
-    if debug:
-      print(Fore.RED + "Tron.bat activated - AT" + now + Style.RESET_ALL)
+  if debug:
+    print(Fore.BLUE + "Tron.bat activated - AT" + now + Style.RESET_ALL)
 
 
 def checkDirectorys():
@@ -246,12 +248,12 @@ def PHASE_1():
       print("SafeGuard will now exit")
       sleep
       exit()
-  
+
   else:
-        print("SafeGuard will now exit")
-        sleep
-        exit()
-    
+    print("SafeGuard will now exit")
+    sleep
+    exit()
+
 
 def PHASE_2():
   # This will run diskcleanup after that ask to run windowsUpdate and tron
@@ -262,9 +264,8 @@ def PHASE_2():
   # Log
   with open(Files.logFile, "a") as f:
     f.write("SafeGuard PHASE-2 initalized - AT:" + now)
-    if debug:
-      print(Fore.BLUE + "SafeGuard PHASE-2 initalized - AT:" + now +
-            Style.RESET_ALL)
+  if debug:
+    print(Fore.BLUE + "SafeGuard PHASE-2 initalized - AT:" + now + Style.RESET_ALL)
 
   print(
     "Your system scanned a malacious folder, don't worry we have removed it for you\n"
@@ -299,6 +300,7 @@ def PHASE_2():
   else:
     print(Fore.RED + "Invaild Input!" + Style.RESET_ALL)
 
+
 def PHASE_3():
   # This will run tron as admin and then when tron is done it run stinger
 
@@ -311,11 +313,18 @@ def PHASE_3():
   if debug:
     print(Fore.BLUE + "SafeGuard PHASE-3 initalized - AT:" + now + Style.RESET_ALL)
 
-  time.sleep(30)
+  attemptUpdate = input("Would you like to update your PC? (y/n)")
+
+  if attemptUpdate == "y":
+    checkWindowsUpdate()
+  else:
+    print(Fore.BLUE + "Update Skipped" + Style.RESET_ALL)
+
+  time.sleep(3)
+  clear()
 
   print("\n\n Activating Tron Please wait... \n")
   print("Click 'Yes' when asked to run as admin \n")
-
   time.sleep(5)
 
   startTron()
@@ -324,27 +333,22 @@ def PHASE_3():
   with open(Files.logFile, "a") as f:
     f.write("SafeGuard !THREAT-ACTION-FINISHED! - AT:" + now)
   if debug:
-    print(Fore.BLUE + "SafeGuard !THREAT-ACTION-FINISHED! - AT:" + now +
-          Style.RESET_ALL)
+    print(Fore.BLUE + "SafeGuard !THREAT-ACTION-FINISHED! - AT:" + now + Style.RESET_ALL)
 
   # Start stinger
-  StingerYorN = input(
-    "Do you want to run stinger it will help keep your device protected in the future? (y/n) \n")
+  StingerYorN = input("Do you want to run stinger it will help keep your device protected in the future? (y/n) \n")
 
   if StingerYorN == 'y':
-    URLinstall(
-      "https://downloadcenter.trellix.com/products/mcafee-avert/Stinger/stinger64.exe", "Downloads", "Stinger")
+    URLinstall("https://downloadcenter.trellix.com/products/mcafee-avert/Stinger/stinger64.exe", "Downloads", "Stinger")
     os.startfile("C:/Users/coope/Python-SafeGuard/resources/tron/resources/Stinger.exe")
-
   else:
     print(Fore.RED + "Stinger skipped" + Style.RESET_ALL)
 
 
-# Check if the program running as admin
+# Check if program running as admin
 if is_admin():
   clear()
   PHASE_1()
 else:
-  # Re-run the program with admin rights
+  # Run the program with admin perms
   ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
-
