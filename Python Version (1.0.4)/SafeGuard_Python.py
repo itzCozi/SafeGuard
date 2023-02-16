@@ -1,9 +1,9 @@
 # Make a program to check the known directorys for folders which usally hold viruses (Windows/Temp, roaming/Peer2Profit, All other malawarebytes detections) PYTHON PORT FROM C++
 """
-TODO: Fix all if debug: statment (Indentation Error)
-TODO: Release version 1.0.4 after code refine/reformat
+TODO: Check code for wrapped lines
 TODO: Test V1.0.4 on windows pc when home (with debug off)
-TODO: Find a solution to the C++ problem
+TODO: Release version 1.0.4 after test (2/16/23)
+TODO: Ask about C++ problem on stackoverflow
 """
 
 # Imports
