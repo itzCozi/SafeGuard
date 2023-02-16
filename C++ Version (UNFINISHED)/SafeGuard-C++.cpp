@@ -1,4 +1,5 @@
-// This code is old and was kind of a template sadly i still have to finish it.
+// This code is old and was kind of a template sadly i still have'nt finished it.
+// (https://stackoverflow.com/a/20372880)
 
 // Imports
 #include <stdlib.h>
