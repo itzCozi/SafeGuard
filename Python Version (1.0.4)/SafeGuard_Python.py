@@ -31,14 +31,14 @@ else:
 
 # Global Variables
 class Files():
-  appUserFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/SafeGuard.app.ink");
-  pythondiscreteFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python-Discrete.py");
-  tronAdmin = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tronAdmin.ink");
-  tronPath = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tron");
-  appFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard.cmd");
-  pythonFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python.py");
-  logFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/logs.txt");
-  knownThreatFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/threatList.sg");
+  appUserFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/SafeGuard.app.ink")
+  pythondiscreteFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python-Discrete.py")
+  tronAdmin = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tronAdmin.ink")
+  tronPath = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tron")
+  appFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard.cmd")
+  pythonFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/SafeGuard-Python.py")
+  logFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/logs.txt")
+  knownThreatFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/threatList.sg")
 
 
 sleep = time.sleep(3)
@@ -62,11 +62,14 @@ with open(Files.logFile, "a") as f:
   if os.path.getsize(Files.knownThreatFile) == 0:
     f.write("!THREAT-LIST-EMPTY! No directorys scanned. - AT: " + now)
     print("!THREAT-LIST-EMPTY! No directorys scanned.")
-  f.write("!THREATS-LOADED! " + now)
-if debug:
-  print("!THREATS-LOADED! ")
-  print(data_into_list)
-knownThreats.close()
+    knownThreats.close()
+  if debug:
+    print("!THREATS-LOADED! ")
+    print(data_into_list)
+    knownThreats.close()
+  else:
+    f.write("!THREATS-LOADED! " + now)
+    knownThreats.close()
 
 
 # Functions
@@ -109,7 +112,8 @@ def checkWindowsUpdate(sickbay):
   os.system("Get-WindowsUpdate")
   clear()
 
-  updateConfirmation = input("Are you sure you want to update Windows10? (y/n) \n")
+  updateConfirmation = input(
+    "Are you sure you want to update Windows10? (y/n) \n")
 
   if updateConfirmation == 'y' or sickbay == True:
     os.system("Install-WindowsUpdate")
@@ -244,12 +248,12 @@ def PHASE_1():
       print("SafeGuard will now exit")
       sleep
       exit()
-  
+
   else:
     print("SafeGuard will now exit")
     sleep
     exit()
-    
+
 
 def PHASE_2():
   # This will run diskcleanup after that ask to run windowsUpdate and tron
@@ -296,6 +300,7 @@ def PHASE_2():
   else:
     print(Fore.RED + "Invaild Input!" + Style.RESET_ALL)
 
+
 def PHASE_3():
   # This will run tron as admin and then when tron is done it run stinger
 
@@ -313,13 +318,13 @@ def PHASE_3():
   if attemptUpdate == "y":
     checkWindowsUpdate()
   else:
-    print(Fore.BLUE + "Update Skipped" + Syle.RESET_ALL)
+    print(Fore.BLUE + "Update Skipped" + Style.RESET_ALL)
 
-  time.sleep(30)
+  time.sleep(3)
+  clear()
 
   print("\n\n Activating Tron Please wait... \n")
   print("Click 'Yes' when asked to run as admin \n")
-
   time.sleep(5)
 
   startTron()
@@ -347,4 +352,3 @@ if is_admin():
 else:
   # Run the program with admin perms
   ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
-
