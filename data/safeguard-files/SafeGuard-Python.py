@@ -4,7 +4,7 @@ TODO: Check code for wrapped lines
 TODO: Add requirements.txt file to new releases
 TODO: Test V1.0.4 on windows pc when home (with debug off)
 TODO: Release version 1.0.4 after test (2/16/23)
-TODO: Ask about C++ problem on stackoverflow
+TODO: Ask about C++ problem on stackoverflow (https://stackoverflow.com/a/20372880)
 TODO: Review/refine PreChecks.py and add to 1.0.4
 """
 
