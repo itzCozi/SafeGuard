@@ -5,7 +5,7 @@ TODO: Add requirements.txt file to new releases
 TODO: Test V1.0.4 on windows pc when home (with debug off)
 TODO: Release version 1.0.4 after test (2/16/23)
 TODO: Ask about C++ problem on stackoverflow
-TODO: Review/refine PreChecks.py and add to 1.0.5
+TODO: Review/refine PreChecks.py and add to 1.0.4
 """
 
 # Imports
