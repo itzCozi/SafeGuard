@@ -2,7 +2,7 @@
 """
 TODO: Fix all if debug: statment (Indentation Error)
 TODO: Release version 1.0.4 after code refine/reformat
-TODO: Over engineer the shit outta this
+TODO: Test V1.0.4 on windows pc when home (with debug off)
 TODO: Find a solution to the C++ problem
 """
 
