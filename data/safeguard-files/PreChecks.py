@@ -20,7 +20,7 @@ class Files():
   prechecksFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/PreChecks.py");
   prechecksFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources");
 
-  tronAdmin = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tronAdmin")
+  tronAdmin = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tronAdmin");
   tronAdminFolder = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources");
 
   tronPath = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/resources/tron");
