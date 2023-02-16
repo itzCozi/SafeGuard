@@ -182,12 +182,12 @@ def diskCleanup(diskCleanup, sickbay):
 
 
 def installRUNSafetyScanner():
-  CUSTOMinstall("https://go.microsoft.com/fwlink/?LinkId=212732", "C:/Users/coope/Downloads", "SafetyScanner", ".exe")
-  os.startfile("C:/Users/coope/Downloads/SafetyScanner.exe")
+  CUSTOMinstall("https://go.microsoft.com/fwlink/?LinkId=212732", str("C:/Users/" + os.getlogin() + "/Downloads"), "SafetyScanner", ".exe")
+  os.startfile(str("C:/Users/" + os.getlogin() + "/Downloads/SafetyScanner.exe"))
 
 
 def startTron():
-  os.startfile("D:/vscode/Workspace/Python-SafeGuard/resources/tronAdmin")
+  os.startfile(Files.tronAdmin)
 
   # Log
   with open(Files.logFile, "a") as f:
@@ -342,7 +342,7 @@ def PHASE_3():
 
   if StingerYorN == 'y':
     URLinstall("https://downloadcenter.trellix.com/products/mcafee-avert/Stinger/stinger64.exe", "Downloads", "Stinger")
-    os.startfile("C:/Users/coope/Python-SafeGuard/resources/tron/resources/Stinger.exe")
+    os.startfile(str("C:/Users/" + os.getlogin() +"/Python-SafeGuard/resources/tron/resources/Stinger.exe"))
   else:
     print(Fore.RED + "Stinger skipped" + Style.RESET_ALL)
 
