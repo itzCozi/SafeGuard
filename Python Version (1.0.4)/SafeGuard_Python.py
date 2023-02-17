@@ -137,7 +137,7 @@ def checkWindowsUpdate(sickbay):
 def systemRestore(systemRestore, sickbay):
   if systemRestore is True or sickbay is True:
     os.system("DISM.exe /Online /Cleanup-image /Restorehealth")
-    sleep
+    time.sleep(3)
     os.system("sfc /scannow")
 
     # Log
@@ -246,12 +246,12 @@ def PHASE_1():
       PHASE_2()
     else:
       print("SafeGuard will now exit")
-      sleep
+      time.sleep(3)
       sys.exit()
 
   else:
     print("SafeGuard will now exit")
-    sleep
+    time.sleep(3)
     sys.exit()
 
 
