@@ -247,12 +247,12 @@ def PHASE_1():
     else:
       print("SafeGuard will now exit")
       sleep
-      exit()
+      sys.exit()
 
   else:
     print("SafeGuard will now exit")
     sleep
-    exit()
+    sys.exit()
 
 
 def PHASE_2():
@@ -278,7 +278,7 @@ def PHASE_2():
     systemRestore(systemRestore is True, sickbay is False)
   else:
     print("Prep skipped... QUITTING")
-    quit()
+    sys.exit()
 
   SafteyscanYorN = input("Do you want to remove threats? (y/n) \n")
 
