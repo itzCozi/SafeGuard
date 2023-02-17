@@ -157,7 +157,7 @@ def systemRestore(systemRestore, sickbay):
 def diskCleanup(diskCleanup, sickbay):
   if diskCleanup is True or sickbay is True:
 
-    print("Disk usage: " + shutil.disk_usage("C:/"))
+    print("Disk usage:", shutil.disk_usage("C:/"))
 
     diskCleanupYorN = input("Do you want to run disk cleanup? (y/n) \n")
 
