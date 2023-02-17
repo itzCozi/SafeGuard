@@ -68,7 +68,7 @@ def hashFileLOCAL(file):
 
 def hashFileURL(url):
   newFile = str("C:/Users/" + os.getlogin() + "/Python-SafeGuard/newFile")
-  
+
   with open (newFile, "w") as f:
     f.write(requests.get(url).text)
     f.close()
@@ -84,10 +84,10 @@ def hashFileURL(url):
         break
 
       sha256.update(data)
-  
+
   f.close()
   os.remove(newFile)
-  
+
   return sha256.hexdigest()
 
 
@@ -145,63 +145,63 @@ def autoUpdate():
 # main python files code with the newly downloaded file. If they are the same delete new file and print("SafeGuard is up to date")
   webFile = hashFileURL('https://itzcozi.github.io/SafeGuard/data/safeguard-files/SafeGuard-Python.py')
   localFile = hashFileLOCAL(Files.pythonFile)
-  
+
   precheckFile = hashFileLOCAL(Files.prechecksFile)
   precheckwebFile = hashFileURL('https://itzcozi.github.io/SafeGuard/data/safeguard-files/PreChecks.py')
-  
+
   print(hashFileURL('https://itzcozi.github.io/SafeGuard/data/safeguard-files/SafeGuard-Python.py'))
   print(hashFileLOCAL(Files.pythonFile))
   print(hashFileLOCAL(Files.prechecksFile))
   print(hashFileURL('https://itzcozi.github.io/SafeGuard/data/safeguard-files/PreChecks.py'))
-  
+
   if webFile != localFile:
     # Logs
     with open (Files.logFile, "a") as f:
       f.write("SafeGuard-Python.py !OUTDATED! - AT: " + now)
     if debug:
       print(Fore.RED + "SafeGuard-Python.py !OUTDATED! - AT: " + now + Style.RESET_ALL)
-      
+
     with open (Files.logFile, "a") as f:
       f.write("Updating SafeGuard-Python.py - AT: " + now)
     if debug:
       print(Fore.GREEN + "Updating SafeGuard-Python.py - AT: " + now + Style.RESET_ALL)
-    
+
     # Update file
     with open (Files.pythonFile, "w") as f:
       f.truncate(0)
       f.write(requests.get('https://itzcozi.github.io/SafeGuard/data/safeguard-files/SafeGuard-Python.py').text)
       f.close()
-    
+
     # Logs
     with open (Files.logFile, "a") as f:
       f.write("SafeGuard-Python.py !UPDATED! - AT: " + now)
     if debug:
       print(Fore.GREEN + "SafeGuard-Python.py !UPDATED! - AT: " + now + Style.RESET_ALL)
-      
+
   if precheckwebFile != precheckFile:
     # Logs
     with open (Files.logFile, "a") as f:
       f.write("PreChecks.py !OUTDATED! - AT: " + now)
     if debug:
       print(Fore.RED + "PreChecks.py !OUTDATED! - AT: " + now + Style.RESET_ALL)
-      
+
     with open (Files.logFile, "a") as f:
       f.write("Updating PreChecks.py - AT: " + now)
     if debug:
       print(Fore.GREEN + "Updating PreChecks.py - AT: " + now + Style.RESET_ALL)
-    
+
     # Update file
     with open(Files.prechecksFile, "w") as f:
       f.truncate(0)
       f.write(requests.get('https://itzcozi.github.io/SafeGuard/data/safeguard-files/PreChecks.py').text)
       f.close()
-    
+
     # Logs
     with open (Files.logFile, "a") as f:
       f.write("PreChecks.py !UPDATED! - AT: " + now)
     if debug:
       print(Fore.GREEN + "PreChecks.py !UPDATED! - AT: " + now + Style.RESET_ALL)
-      
+
   else:
     print(Fore.GREEN + "SafeGuard is up to date" + Style.RESET_ALL)
     with open(Files.logFile, "a") as f:
@@ -209,4 +209,4 @@ def autoUpdate():
     if debug:
       print(Fore.GREEN + "SafeGuard !UP-TO-DATE! - AT: " + now + Style.RESET_ALL)
     clear()
-  
+
