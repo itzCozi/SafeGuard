@@ -47,7 +47,6 @@ debug = True
 sickbay = False
 systemRestore = True
 diskCleanup = True
-checkDirectorys = True
 
 preRun()
 autoUpdate()
