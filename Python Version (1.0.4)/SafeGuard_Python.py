@@ -316,7 +316,7 @@ def PHASE_3():
   attemptUpdate = input("Would you like to update your PC? (y/n)")
 
   if attemptUpdate == "y":
-    checkWindowsUpdate()
+    checkWindowsUpdate(sickbay is True)
   else:
     print(Fore.BLUE + "Update Skipped" + Style.RESET_ALL)
 
