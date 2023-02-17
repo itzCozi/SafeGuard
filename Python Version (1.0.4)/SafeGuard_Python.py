@@ -116,7 +116,7 @@ def checkWindowsUpdate(sickbay):
   updateConfirmation = input(
     "Are you sure you want to update Windows10? (y/n) \n")
 
-  if updateConfirmation == 'y' or sickbay == True:
+  if updateConfirmation == 'y' or sickbay is True:
     os.system("Install-WindowsUpdate")
 
     # Log
@@ -136,7 +136,7 @@ def checkWindowsUpdate(sickbay):
 
 
 def systemRestore(systemRestore, sickbay):
-  if systemRestore == True or sickbay == True:
+  if systemRestore is True or sickbay is True:
     os.system("DISM.exe /Online /Cleanup-image /Restorehealth")
     sleep
     os.system("sfc /scannow")
@@ -156,7 +156,7 @@ def systemRestore(systemRestore, sickbay):
 
 
 def diskCleanup(diskCleanup, sickbay):
-  if diskCleanup == True or sickbay == True:
+  if diskCleanup is True or sickbay is True:
 
     print("Disk usage: " + shutil.disk_usage("C:/"))
 
@@ -198,7 +198,7 @@ def startTron():
 def checkDirectorys():
   for iteam in data_into_list:
 
-    if os.path.isdir(iteam) == True:
+    if os.path.isdir(iteam) is True:
       # User notification
       print(Fore.RED + "Directory detected" + Style.RESET_ALL)
 
@@ -219,7 +219,7 @@ def checkDirectorys():
 
       return True
 
-    if os.path.isdir(iteam) == False:
+    if os.path.isdir(iteam) is False:
       print(Fore.RED + "No directory detected" + Style.RESET_ALL)
 
 
@@ -237,7 +237,7 @@ def PHASE_1():
   # If checkDirectorys() returns true then run PHASE_2
   if checkDirectorys():
     print(Fore.RED + Style.BRIGHT + "!RUNNING-EMMERGENCY-PROCEDURE!" + Style.RESET_ALL)
-    systemRestore(systemRestore == True, sickbay == False)
+    systemRestore(systemRestore is True, sickbay is False)
     clear()
 
     print("!THREAT-DETECTED! Start Phase-2?")
@@ -275,8 +275,8 @@ def PHASE_2():
   prepYorN = input("Do you want to run disk cleanup and windows update? (y/n) \n")
 
   if prepYorN == 'y':
-    diskCleanup(diskCleanup == True, sickbay == False)
-    systemRestore(systemRestore == True, sickbay == False)
+    diskCleanup(diskCleanup is True, sickbay is False)
+    systemRestore(systemRestore is True, sickbay is False)
   else:
     print("Prep skipped... QUITTING")
     quit()
