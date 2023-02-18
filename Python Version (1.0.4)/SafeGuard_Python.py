@@ -1,5 +1,6 @@
 # Make a program to check the known directorys for folders which usally hold viruses (Windows/Temp, roaming/Peer2Profit, All other malawarebytes detections) PYTHON PORT FROM C++
 """
+TODO: Look into adding a file shredder instead of just deleting the file (https://dev.to/geofspot/how-to-shred-a-file-in-python-545f)
 TODO: Ask about C++ problem on stackoverflow (https://stackoverflow.com/a/20372880)
 TODO: Fix C++ problem
 """
