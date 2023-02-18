@@ -14,11 +14,16 @@ try:
   import datetime
   import shutil
   import ctypes
-  from PreChecks import preRun
-  from PreChecks import autoUpdate
   from colorama import Fore, Style
 except:
   print("Error: Missing required modules. Please install the following modules: os, requests, time, datetime, colorama, shutil, ctypes")
+
+# File Imports
+try:
+  from PreChecks import preRun
+  from PreChecks import autoUpdate
+except:
+  print("Error: SafeGuard PreChecks.py is missing. Please install PreChecks.")
 
 
 # Pre run message
