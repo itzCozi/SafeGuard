@@ -19,6 +19,13 @@ SafeGuard is still under active development for both the C++ and python versions
 We are looking foreward to soon realeasing the C++ version but I am only a solo dev so please have patience.
 
 
+### Website
+SafeGuards webpage also updates automaticly with the most recent stable version this means your always testing  
+unreleased code. After this code is uploaded the files on the web and the files on your computer are compare and  
+if your version of SafeGuard is out of date the local files on your computer will be ovewritten with the new ones, the  
+releases are really just the compiled version beacuease the source code is always avalible on github and is updated daily.
+
+
 ### Contribution 
 There is currently no one else working on this project aside from me although if you are  
 interested in developing this app in either langauge please contact me I would love a helper.  
