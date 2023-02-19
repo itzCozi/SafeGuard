@@ -20,10 +20,10 @@ We are looking foreward to soon realeasing the C++ version but I am only a solo 
 
 
 ### Website
-SafeGuards webpage also updates automaticly with the most recent stable version this means your always testing  
-unreleased code. After this code is uploaded the files on the web and the files on your computer are compare and  
+SafeGuard's webpage also updates automatically with the most recent stable version this means your always testing  
+unreleased code. After this code is uploaded the files on the web and the files on your computer are compared and  
 if your version of SafeGuard is out of date the local files on your computer will be ovewritten with the new ones, the  
-releases are really just the compiled version beacuease the source code is always avalible on github and is updated daily.
+releases are really just the compiled versions beacuease the source code is always avalible on github and is updated daily.
 
 
 ### Contribution 
