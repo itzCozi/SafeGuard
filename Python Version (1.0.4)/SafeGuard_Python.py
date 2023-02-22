@@ -11,9 +11,11 @@ try:
   import requests
   import sys
   import time
+  import glob
   import datetime
   import shutil
   import ctypes
+  import subprocess as sp
   from colorama import Fore, Style
 except:
   print("Error: Missing required modules. Please install the following modules: os, requests, time, datetime, colorama, shutil, ctypes")
@@ -185,6 +187,16 @@ def diskCleanup(diskCleanup, sickbay):
 def installRUNSafetyScanner():
   CUSTOMinstall("https://go.microsoft.com/fwlink/?LinkId=212732", str("C:/Users/" + os.getlogin() + "/Downloads"), "SafetyScanner", ".exe")
   os.startfile(str("C:/Users/" + os.getlogin() + "/Downloads/SafetyScanner.exe"))
+
+
+def shred(file):
+  sp.call(f'shred -zvu -n 10 {file}', shell = True)
+
+  # Log
+  with open(Files.logFile, "a") as f:
+    f.write("File shreder activated - AT:" + now)
+  if debug:
+    print(Fore.BLUE + "File shreder activated - AT" + now + Style.RESET_ALL)
 
 
 def startTron():
